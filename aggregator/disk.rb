@@ -6,8 +6,8 @@
 # Generally used for fun or, in my case, testing.
 class Disk < Aggregator
   attr_reader :current_file, :files
-  
-  def initialize(config) 
+
+  def initialize(config)
     @files = config['files']
     @current_file = @files.first
   end

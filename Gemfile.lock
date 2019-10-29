@@ -20,10 +20,11 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   colorize
   rubocop
 
 BUNDLED WITH
-   1.16.1
+   1.17.3
