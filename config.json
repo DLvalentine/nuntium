@@ -1,0 +1,16 @@
+{
+    "aggregators": {
+        "Disk": {
+            "enabled": true,
+            "files": ["test-file.txt"]
+        },
+        "Rss": {
+            "enabled": false,
+            "feeds": []
+        },
+        "Stock": {
+            "enabled": false,
+            "symbols": []
+        }
+    }
+}
