@@ -4,7 +4,7 @@ require 'io/console'
 
 ## Implementation of ticker for CLI displays
 class Cli < Display
-  attr_accessor :width
+  attr_reader :width
 
   def initialize
     @width = term_width
