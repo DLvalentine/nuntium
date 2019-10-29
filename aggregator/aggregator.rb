@@ -13,7 +13,7 @@ class Aggregator
 
   ## @returns {Hash} - hash containing the enabled
   #   aggregators marked in config.json
-  def self.enabled
+  def self.enabled_aggregators
     JSON.parse(File.read('../config.json'))['aggregators'].select do |k, v|
       { k => v } if v['enabled']
     end
