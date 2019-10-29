@@ -2,7 +2,7 @@
     "aggregators": {
         "Disk": {
             "enabled": true,
-            "files": ["test-file.txt"]
+            "files": ["test-file.txt", "test-file-2.txt"]
         },
         "Rss": {
             "enabled": false,

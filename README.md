@@ -3,3 +3,5 @@ General idea: rss/stock/data/etc ticker with multiple display modes....maybe mor
 
 TODO: create todo file
 TODO: create general design mind-dump
+TODO: start README docs...
+TODO: Orca => Ruby executable with config
