@@ -2,6 +2,9 @@
 
 source 'https://rubygems.org'
 
+# required
 gem 'colorize'
+
+# development
 gem 'pry'
 gem 'rubocop'
