@@ -1,0 +1,1 @@
+So long as it is not a binary, you can put files here and configure Nuntium to put them in your ticker! Don't forget to configure it via config.json!
