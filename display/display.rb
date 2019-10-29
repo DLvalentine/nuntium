@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'json'
-
 ## Parent class for the display/ticking, as it were
 # Purpose: to provide common methods to display types, like:
 # - Aggregators
