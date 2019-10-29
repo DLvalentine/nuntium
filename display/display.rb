@@ -11,7 +11,7 @@ class Display
 
   attr_reader :display
 
-  def initialize(type, _config = nil)
+  def initialize(type)
     @type = type
     @display = Object.const_get(type).new
   end
