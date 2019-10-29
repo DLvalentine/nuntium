@@ -1,2 +1,4 @@
 # frozen_string_literal: true
-## runner file => "Main"
+
+require 'display/display'
+require 'aggregator/aggregator'

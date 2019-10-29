@@ -4,6 +4,8 @@ require 'json'
 
 ## Parent class for all data streams to use in the ticker
 class Aggregator
+  require_relative 'disk.rb'
+
   attr_reader :feed
 
   def initialize(type, config = nil)
@@ -14,7 +16,7 @@ class Aggregator
   ## @returns {Hash} - hash containing the enabled
   #   aggregators marked in config.json
   def self.enabled_aggregators
-    JSON.parse(File.read('../config.json'))['aggregators'].select do |k, v|
+    JSON.parse(File.read('./config.json'))['aggregators'].select do |k, v|
       { k => v } if v['enabled']
     end
   end
@@ -24,6 +26,6 @@ class Aggregator
   # @returns {Hash} - hash containing the configuration for this
   #   instance's type of aggregator, enabled or not.
   def read_config
-    JSON.parse(File.read('../config.json'))['aggregators'][@type]
+    JSON.parse(File.read('./config.json'))['aggregators'][@type]
   end
 end

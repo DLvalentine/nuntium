@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'json'
+
 ## Parent class for the display/ticking, as it were
 # Purpose: to provide common methods to display types, like:
 # - Aggregators
@@ -7,4 +9,12 @@
 # - Styling of aggregator
 # - ... etc....
 class Display
+  require_relative 'cli.rb'
+
+  attr_reader :display
+
+  def initialize(type, _config = nil)
+    @type = type
+    @display = Object.const_get(type).new
+  end
 end

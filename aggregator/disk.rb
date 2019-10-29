@@ -31,7 +31,7 @@ class Disk < Aggregator
   #        Disk.rb is mostly just for testing at the moment.
   # @returns {Array<String>} - Array of lines in the given file.
   def load_file(file_name)
-    File.readlines("../disk_files/#{file_name}")
+    File.readlines("./disk_files/#{file_name}")
   end
 
   ## Attempt to load the next file, or reload the first file accessed
