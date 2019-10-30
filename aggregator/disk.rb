@@ -19,7 +19,9 @@ class Disk < Aggregator
   # If there isn't another line, go to the next file.
   # @returns {String} - the next line in the current file
   def read
-    line = nil
+    next_file if @data.empty?
+
+    line = '-'
 
     loop do
       line = @data.shift&.strip
@@ -27,7 +29,7 @@ class Disk < Aggregator
       break unless line.empty?
     end
 
-    line.nil? ? next_file.shift : line
+    line
   end
 
   private
@@ -47,13 +49,13 @@ class Disk < Aggregator
   def next_file
     @current_file_index += 1
 
-    if @current_file_index == @files.length
+    if @current_file_index >= @files.length
       @current_file = @files.first
       @current_file_index = 0
-      @data = load_file(@files[@current_file_index])
     else
       @current_file = @files[@current_file_index]
-      @data = load_file(@current_file)
     end
+
+    @data = load_file(@current_file)
   end
 end
