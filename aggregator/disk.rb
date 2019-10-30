@@ -18,8 +18,15 @@ class Disk < Aggregator
   #   returns it to the aggregator.
   # If there isn't another line, go to the next file.
   # @returns {String} - the next line in the current file
-  def next
-    line = @data.shift
+  def read
+    line = nil
+
+    loop do
+      line = @data.shift&.strip
+      break if line.nil?
+      break unless line.empty?
+    end
+
     line.nil? ? next_file.shift : line
   end
 

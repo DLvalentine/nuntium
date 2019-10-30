@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-require 'display/display'
-require 'aggregator/aggregator'
+require_relative './display/display.rb'
+require_relative './aggregator/aggregator.rb'
