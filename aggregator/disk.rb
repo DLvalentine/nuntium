@@ -19,13 +19,11 @@ class Disk < Aggregator
   # If there isn't another line, go to the next file.
   # @returns {String} - the next line in the current file
   def read
-    next_file if @data.empty?
-
     line = '-'
 
     loop do
+      next_file if @data.empty?
       line = @data.shift&.strip
-      break if line.nil?
       break unless line.empty?
     end
 
