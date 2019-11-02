@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'io/console'
+
 ## Utility methods, shared between all classes
 module Util
   ## Spin up a new thread to run a given block at an interval
@@ -12,5 +14,9 @@ module Util
         yield
       end
     end
+  end
+
+  def self.listen_for_exit
+    Util.poll(1) { exit if STDIN.getch == 'q' }
   end
 end
