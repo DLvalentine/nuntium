@@ -8,6 +8,18 @@ class Display
 
   def initialize(type)
     @type = type
-    @display = Object.const_get(type).new
+    begin
+      @display = Object.const_get(type).new
+    rescue NameError
+      raise ArgumentError, "Display class \"#{@type}\" does not exist."
+    end
   end
+
+  ## TODO: Only here to serve as an implementation reminder. Remove for prod.
+  # rubocop:disable all
+  def method_missing(method_called)
+    raise StandardError, 
+      "Method \"#{method_called}\" does not exist for Display class: #{@type}"
+  end
+  # rubocop:enable all
 end
