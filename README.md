@@ -1,12 +1,6 @@
 # nuntium
-General idea: rss/stock/data/etc ticker with multiple display modes....maybe more
+Nuntium (Latin for `news`!) is (going to be) a news/stock/etc. feed reader for CLI and other displays.
 
-TODO: create todo file
+I'll add some more info here as development continues, but in the meantime here's a *sick* gif:
 
-TODO: create general design mind-dump
-
-TODO: start README docs...
-
-TODO: Orca => Ruby executable with config
-
-TODO: exception handling...
+![Demo of Nuntium](./demos/demo.gif)
