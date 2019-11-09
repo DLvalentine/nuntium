@@ -17,6 +17,6 @@ module Util
   end
 
   def self.listen_for_exit
-    Util.poll(1) { exit if STDIN.getch == 'q' }
+    Util.poll(Cli::CLI_SPEED) { exit if STDIN.getch == 'q' }
   end
 end

@@ -8,7 +8,7 @@ class Cli < Display
   attr_reader :width
   CLI_SPEED = 0.10
 
-  ### ISSUES (FIXME): 
+  ### ISSUES (FIXME):
   # Resize: Going larger is fine, going smaller creates newlines
   # Newlines: newlines are returned when typing.
 
@@ -17,7 +17,12 @@ class Cli < Display
     Util.poll(Cli::CLI_SPEED) { @width = term_width }
   end
 
-  # TODO: accept multiple aggregators
+  # TODO: accept multiple aggregators...
+  ## Given an aggregator, continuously read from its feed
+  #  and display its contents in a scrolling manner.
+  #  This will continue in an infinite loop until the program
+  #  is terminated via 'q' (see Util module)
+  # @param {Object<Aggregator>} - The aggregator to read from
   def stream(aggregator)
     ## Consider: This actually works just fine for disk files.
     #            I think "chunking" would only be needed for
@@ -31,6 +36,8 @@ class Cli < Display
       @end = @start + @width
       sleep Cli::CLI_SPEED
       line += " * #{aggregator.feed.read}" if line[@end + 1].nil?
+      ## FIXME: eventually, <line> will be reaaallly big.
+      ##        Find a way to kill it? Could end up being a memory problem...
     end
   end
 
