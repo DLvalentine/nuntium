@@ -4,15 +4,16 @@ require_relative './display/display.rb'
 require_relative './aggregator/aggregator.rb'
 require_relative 'util.rb'
 
-# TODO : use config, make several aggregators
+# TODO : use config, make several aggregators, use CLI options
 def main
+  Util.listen_for_exit
+  Util.clear_term
+
   aggregator = Aggregator.new('Disk')
   cli = Display.new('Cli')
 
-  Util.listen_for_exit
-
+  sleep Cli::CLI_SPEED
   cli.display.stream(aggregator)
-  exit(0) ### exit with success code for now.
 end
 
 main

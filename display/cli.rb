@@ -8,10 +8,6 @@ class Cli < Display
   attr_reader :width
   CLI_SPEED = 0.10
 
-  ### ISSUES (FIXME):
-  # Resize: Going larger is fine, going smaller creates newlines
-  # Newlines: newlines are returned when typing.
-
   def initialize
     @width = term_width
     Util.poll(Cli::CLI_SPEED) { @width = term_width }
@@ -46,6 +42,8 @@ class Cli < Display
   ## Returns the terminal width in columns
   # @return {Number} - the width
   def term_width
-    IO.console.winsize.last - 1
+    new_width = IO.console.winsize.last - 1
+    Util.clear_term if @width && new_width < @width
+    new_width
   end
 end

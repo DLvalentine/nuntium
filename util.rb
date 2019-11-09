@@ -17,6 +17,16 @@ module Util
   end
 
   def self.listen_for_exit
-    Util.poll(Cli::CLI_SPEED) { exit if STDIN.getch == 'q' }
+    Util.poll(Cli::CLI_SPEED) do
+      exit if STDIN.getch == 'q'
+      Util.clear_term
+    end
+  end
+
+  def self.clear_term
+    Thread.new do
+      sleep Cli::CLI_SPEED
+      system('clear') ? nil : system('cls')
+    end
   end
 end
