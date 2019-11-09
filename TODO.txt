@@ -3,4 +3,5 @@
 - Documentation (keep at it)
 - Orca executable or similar
 - Exception handling
-- Cli options... 
+- Cli options...
+- Documentation related to installation (Windows will need ruby, LED display instruction, etc.) 
