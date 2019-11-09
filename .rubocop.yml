@@ -1,0 +1,4 @@
+# 15 is a little tight in some loops.
+# TODO: Find/improve trouble spots.
+Metrics/AbcSize:
+  Max: 20
