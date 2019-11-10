@@ -17,6 +17,7 @@ module Util
   end
 
   def self.listen_for_exit
+    ### FIXME: This works in windows, but you have to press "enter"...
     Util.poll(Cli::CLI_SPEED) do
       exit if STDIN.getch == 'q'
       Util.clear_term

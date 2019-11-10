@@ -27,7 +27,7 @@ class Cli < Display
     @start = 0
     @end = @start + @width
     loop do
-      printf("\r#{line.slice(@start..@end)}")
+      print "\r#{line.slice(@start..@end)}"
       @start += 1
       @end = @start + @width
       sleep Cli::CLI_SPEED
