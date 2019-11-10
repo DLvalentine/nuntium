@@ -18,6 +18,7 @@ module Util
 
   def self.listen_for_exit
     ### FIXME: This works in windows, but you have to press "enter"...
+    ### FIXME: Turn the cursor off? Figure that out?
     Util.poll(Cli::CLI_SPEED) do
       exit if STDIN.getch == 'q'
       Util.clear_term
