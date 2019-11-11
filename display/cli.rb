@@ -20,19 +20,16 @@ class Cli < Display
   #  is terminated via 'q' (see Util module)
   # @param {Object<Aggregator>} - The aggregator to read from
   def stream(aggregator)
-    ## Consider: This actually works just fine for disk files.
-    #            I think "chunking" would only be needed for
-    #            RSS feeds...
-    line = aggregator.feed.read
+    $line = aggregator.feed.read
     @start = 0
     @end = @start + @width
     loop do
-      print "\r#{line.slice(@start..@end)}"
+      print "\r#{$line.slice(@start..@end)}"
       @start += 1
       @end = @start + @width
       sleep Cli::CLI_SPEED
-      line += " * #{aggregator.feed.read}" if line[@end + 1].nil?
-      ## FIXME: eventually, <line> will be reaaallly big.
+      $line += " * #{aggregator.feed.read}" if $line[@end + 1].nil?
+      ## FIXME: eventually, <$line> will be reaaallly big.
       ##        Find a way to kill it? Could end up being a memory problem...
     end
   end
