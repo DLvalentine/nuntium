@@ -21,7 +21,14 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
     ruby-progressbar (1.10.1)
+    tty-cursor (0.7.0)
+    tty-reader (0.6.0)
+      tty-cursor (~> 0.7)
+      tty-screen (~> 0.7)
+      wisper (~> 2.0.0)
+    tty-screen (0.7.0)
     unicode-display_width (1.6.0)
+    wisper (2.0.1)
 
 PLATFORMS
   ruby
@@ -31,6 +38,7 @@ DEPENDENCIES
   colorize
   pry
   rubocop
+  tty-reader
 
 BUNDLED WITH
    1.17.3

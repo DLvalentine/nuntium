@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'io/console'
+require 'tty/reader'
 
 ## Utility methods, shared between all classes
 module Util
@@ -17,10 +18,9 @@ module Util
   end
 
   def self.listen_for_exit
-    ### FIXME: This works in windows, but you have to press "enter"...
-    ### FIXME: Turn the cursor off? Figure that out?
+    @reader = TTY::Reader.new
     Util.poll(Cli::CLI_SPEED) do
-      exit if STDIN.getch == 'q'
+      exit if @reader.read_char == 'q'
       Util.clear_term
     end
   end
