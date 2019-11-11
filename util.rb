@@ -20,11 +20,7 @@ module Util
   def self.listen_for_exit
     @reader = TTY::Reader.new
     Util.poll(Cli::CLI_SPEED) do
-      if @reader.read_char == 'q'
-        require 'objspace'
-        puts ObjectSpace.memsize_of($line)
-        exit
-      end
+      exit if @reader.read_char == 'q'
       Util.clear_term
     end
   end

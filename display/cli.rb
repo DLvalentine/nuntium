@@ -20,17 +20,25 @@ class Cli < Display
   #  is terminated via 'q' (see Util module)
   # @param {Object<Aggregator>} - The aggregator to read from
   def stream(aggregator)
-    $line = aggregator.feed.read
-    @start = 0
-    @end = @start + @width
+    line = aggregator.feed.read
+
+    init_indexes = lambda {
+      @start = 0
+      @end = @start + @width
+    }
+
+    init_indexes.call
+
     loop do
-      print "\r#{$line.slice(@start..@end)}"
+      print "\r#{line.slice(@start..@end)}"
       @start += 1
       @end = @start + @width
       sleep Cli::CLI_SPEED
-      $line += " * #{aggregator.feed.read}" if $line[@end + 1].nil?
-      ## FIXME: eventually, <$line> will be reaaallly big.
-      ##        Find a way to kill it? Could end up being a memory problem...
+      next unless line[@end + 1].nil?
+
+      temp = line[@start..@end]
+      line = "#{temp} * #{aggregator.feed.read}"
+      init_indexes.call
     end
   end
 

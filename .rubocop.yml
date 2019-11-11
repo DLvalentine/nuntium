@@ -2,3 +2,7 @@
 # TODO: Find/improve trouble spots.
 Metrics/AbcSize:
   Max: 20
+
+# 10 is a little too strict for me
+Metrics/MethodLength:
+  Max: 25
