@@ -20,7 +20,7 @@ class Cli < Display
   #  is terminated via 'q' (see Util module)
   # @param {Object<Aggregator>} - The aggregator to read from
   def stream(aggregator)
-    line = aggregator.feed.read
+    line = "#{' ' * @width}#{aggregator.feed.read}"
 
     init_indexes = lambda {
       @start = 0
