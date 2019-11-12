@@ -5,3 +5,4 @@
 - Exception handling
 - Cli options...
 - Documentation related to installation (Windows will need ruby, LED display instruction, etc.) 
+- Prod prep: remove debug scripts? Might be useful to keep them in the source, but they should not be in the releases
