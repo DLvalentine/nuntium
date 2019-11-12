@@ -6,7 +6,7 @@ require 'tty/reader'
 ## Utility methods, shared between all classes
 module Util
   ## Spin up a new thread to run a given block at an interval
-  # @param {Number} delay - The time, in seconds to use for a delay
+  # @param {Number} delay - The time, in seconds, to use for a delay
   # Mind the yield, this method also takes a block
   def self.poll(delay)
     Thread.new do
@@ -25,6 +25,7 @@ module Util
     end
   end
 
+  ### TODO: this might make more sense as a Display::Cli method.
   def self.clear_term
     Thread.new do
       sleep Cli::CLI_SPEED
