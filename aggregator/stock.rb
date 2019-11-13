@@ -20,6 +20,9 @@ class Stock < Aggregator
     @api = 'W4JK4YBUEQTP6PIZ'
 
     # "caching"
+    # TODO: consider outputting this to a file?
+    #       that way if someone start/stops the application, it won't 
+    #       destroy our API limit that way, either.
     @cache = {}
     Util.poll(Stock::DAY_IN_SECONDS) { @cache = {} }
   end
