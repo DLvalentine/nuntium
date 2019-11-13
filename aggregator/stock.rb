@@ -2,29 +2,32 @@
 
 require 'open-uri'
 require 'colorize'
+require_relative '../util.rb'
 
 ## Aggregator class for stock symbols, their current value and movement
 class Stock < Aggregator
-  attr_reader :current_symbol, :movement, :value
+  attr_reader :current_symbol
 
   NO_CHANGE  = '-'.yellow
   POS_CHANGE = '▲'.green
   NEG_CHANGE = '▼'.red
+  DAY_IN_SECONDS = 86_400
 
   def initialize(config)
     @symbols = config['symbols']
     @current_symbol = @symbols.first
     @current_symbol_index = 0
-    @api = 'W4JK4YBUEQTP6PIZ' # free API, don't judge
+    @api = 'W4JK4YBUEQTP6PIZ'
+
+    # "caching"
+    @cache = {}
+    Util.poll(Stock::DAY_IN_SECONDS) { @cache = {} }
   end
 
   ## Get the quote for the current symbol,
   #   move to the next one, and give the output string.
-  ### TODO: Local caching, since these will update daily. No need to
-  ###       hit my API limit lol.
   def read
-    quote
-    output_str = "#{@current_symbol} $#{@value} #{@movement}"
+    output_str = @cache[@current_symbol] || quote
     next_symbol
     output_str
   end
@@ -59,6 +62,7 @@ class Stock < Aggregator
                 else
                   Stock::NO_CHANGE
                 end
+    @cache[@current_symbol] = "#{@current_symbol} $#{@value} #{@movement}"
   end
 
   # Move to the next symbol as configured
@@ -71,7 +75,7 @@ class Stock < Aggregator
       @current_symbol = @symbols.first
       @current_symbol_index = 0
     else
-      @current_symbol_index = @symbols[@current_symbol_index]
+      @current_symbol = @symbols[@current_symbol_index]
     end
   end
 end
