@@ -1,7 +1,7 @@
 {
     "aggregators": {
         "Disk": {
-            "enabled": true,
+            "enabled": false,
             "files": ["put_files_here.txt"]
         },
         "Rss": {
@@ -9,8 +9,8 @@
             "feeds": []
         },
         "Stock": {
-            "enabled": false,
-            "symbols": []
+            "enabled": true,
+            "symbols": ["AMZN", "AAPL"]
         }
     }
 }

@@ -5,6 +5,7 @@ require 'json'
 ## Parent class for all data streams to use in the ticker
 class Aggregator
   require_relative 'disk.rb'
+  require_relative 'stock.rb'
 
   attr_reader :feed
 
