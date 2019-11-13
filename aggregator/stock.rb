@@ -8,9 +8,11 @@ require_relative '../util.rb'
 class Stock < Aggregator
   attr_reader :current_symbol
 
-  NO_CHANGE  = '-'.yellow
-  POS_CHANGE = '▲'.green
-  NEG_CHANGE = '▼'.red
+  ## FIXME: carriage return doesn't seem to work with colorize...
+  #         might be an encoding problem....
+  NO_CHANGE  = '-' # .yellow
+  POS_CHANGE = '▲' # .green
+  NEG_CHANGE = '▼' # .red
   DAY_IN_SECONDS = 86_400
 
   def initialize(config)
@@ -21,7 +23,7 @@ class Stock < Aggregator
 
     # "caching"
     # TODO: consider outputting this to a file?
-    #       that way if someone start/stops the application, it won't 
+    #       that way if someone start/stops the application, it won't
     #       destroy our API limit that way, either.
     @cache = {}
     Util.poll(Stock::DAY_IN_SECONDS) { @cache = {} }
@@ -30,6 +32,8 @@ class Stock < Aggregator
   ## Get the quote for the current symbol,
   #   move to the next one, and give the output string.
   def read
+    ## TODO: pre-emptively get quotes, so scroll doesn't hang up
+    #        should work fine since we're caching.
     output_str = @cache[@current_symbol] || quote
     next_symbol
     output_str

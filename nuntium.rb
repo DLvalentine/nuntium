@@ -6,14 +6,14 @@ require_relative 'util.rb'
 
 # TODO : use config, make several aggregators, use CLI options
 def main
-  # Util.listen_for_exit
-  # Util.clear_term
+  Util.listen_for_exit
+  Util.clear_term
 
-  # aggregator = Aggregator.new('Stock')
-  # cli = Display.new('Cli')
+  aggregator = Aggregator.new('Stock')
+  cli = Display.new('Cli')
 
   sleep Cli::CLI_SPEED
-  # cli.display.stream(aggregator)
+  cli.display.stream(aggregator)
 end
 
 main

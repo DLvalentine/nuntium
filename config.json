@@ -10,7 +10,12 @@
         },
         "Stock": {
             "enabled": true,
-            "symbols": ["AMZN", "AAPL"]
+            "symbols": [
+                "AMZN",
+                "AAPL", 
+                "MSFT", 
+                "GOOGL"
+            ]
         }
     }
 }
