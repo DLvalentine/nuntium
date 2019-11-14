@@ -2,9 +2,12 @@
 
 require 'open-uri'
 require 'colorize'
+require 'json'
+require 'date'
 require_relative '../util.rb'
 
 ## Aggregator class for stock symbols, their current value and movement
+## TODO: see if this works for stock symbols outside of the USA
 class Stock < Aggregator
   attr_reader :current_symbol
 
@@ -25,21 +28,63 @@ class Stock < Aggregator
     # TODO: consider outputting this to a file?
     #       that way if someone start/stops the application, it won't
     #       destroy our API limit that way, either.
-    @cache = {}
-    Util.poll(Stock::DAY_IN_SECONDS) { @cache = {} }
+    init_cache
+    Util.poll(Stock::DAY_IN_SECONDS) { init_cache }
   end
 
   ## Get the quote for the current symbol,
   #   move to the next one, and give the output string.
   def read
-    ## TODO: pre-emptively get quotes, so scroll doesn't hang up
-    #        should work fine since we're caching.
+    ## TODO: need to check cache validity here, too!!
     output_str = @cache[@current_symbol] || quote
     next_symbol
     output_str
   end
 
   private
+
+  # Hit the API for each symbol at instantiation instead
+  # of at runtime, then write to file.
+  def init_cache
+    @cache = {}
+    cache_filename = 'stock_cache.json'
+
+    get_symbol_values = lambda {
+      symbol_length = @symbols.length
+      symbol_length.times do |_index|
+        read
+      end
+    }
+
+    overwrite_cache_file = lambda {
+      File.open(cache_filename, 'w') do |file|
+        file.write(@cache.to_json)
+      end
+    }
+
+    # Attempt to read from file first
+    # (over)write file if it doesn't exist, or is 24h+ old.
+    if File.exist?(cache_filename)
+      yesterday  = (Date.today - 1).to_time.to_i
+      tomorrow   = (Date.today + 1).to_time.to_i
+      file_ctime = File.ctime(cache_filename).to_date.to_time.to_i
+
+      cache_from_file = JSON.parse(File.read(cache_filename))
+
+      mismatched_keys = cache_from_file.keys.length != @symbols.length
+      old_cache = !(file_ctime > yesterday && file_ctime < tomorrow)
+
+      if old_cache || mismatched_keys
+        get_symbol_values.call
+        overwrite_cache_file.call
+      else
+        @cache = cache_from_file
+      end
+    else
+      get_symbol_values.call
+      overwrite_cache_file.call
+    end
+  end
 
   ## Hit the alphavantage API for the given symbol
   #   to get the current value and movement.
