@@ -63,7 +63,7 @@ class Stock < Aggregator
     if File.exist?(Stock::CACHE_FILENAME)
       yesterday  = (Date.today - 1).to_time.to_i
       tomorrow   = (Date.today + 1).to_time.to_i
-      file_ctime = File.ctime(Stock::CACHE_FILENAME).to_date.to_time.to_i
+      file_ctime = File.mtime(Stock::CACHE_FILENAME).to_date.to_time.to_i
 
       cache_from_file = JSON.parse(File.read(Stock::CACHE_FILENAME))
 
@@ -92,11 +92,7 @@ class Stock < Aggregator
 
     # Not using Kernel#Open, Rubocop is dumb
     # rubocop:disable Security/Open
-    resp = begin
-             JSON.parse(open("#{endpoint}#{query}").read)['Global Quote']
-           rescue StandardError
-             nil
-           end
+    resp = JSON.parse(open("#{endpoint}#{query}").read)['Global Quote']
     # rubocop:enable Security/Open
 
     if resp.nil?
