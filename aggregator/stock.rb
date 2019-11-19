@@ -7,16 +7,17 @@ require 'date'
 require_relative '../util.rb'
 
 ## Aggregator class for stock symbols, their current value and movement
-## TODO: see if this works for stock symbols outside of the USA
+## TODO: Globalize this -- only US stocks work right now as far as I can tell.
 class Stock < Aggregator
   attr_reader :current_symbol
 
   ## FIXME: carriage return doesn't seem to work with colorize...
   #         might be an encoding problem....
-  NO_CHANGE  = '-' # .yellow
-  POS_CHANGE = '▲' # .green
-  NEG_CHANGE = '▼' # .red
+  NO_CHANGE  = '(-)' # .yellow
+  POS_CHANGE = '(▲)' # .green
+  NEG_CHANGE = '(▼)' # .red
   DAY_IN_SECONDS = 86_400
+  CACHE_FILENAME = 'stock_cache.json'
 
   def initialize(config)
     @symbols = config['symbols']
@@ -24,10 +25,7 @@ class Stock < Aggregator
     @current_symbol_index = 0
     @api = 'W4JK4YBUEQTP6PIZ'
 
-    # "caching"
-    # TODO: consider outputting this to a file?
-    #       that way if someone start/stops the application, it won't
-    #       destroy our API limit that way, either.
+    # local caching
     init_cache
     Util.poll(Stock::DAY_IN_SECONDS) { init_cache }
   end
@@ -47,7 +45,6 @@ class Stock < Aggregator
   # of at runtime, then write to file.
   def init_cache
     @cache = {}
-    cache_filename = 'stock_cache.json'
 
     get_symbol_values = lambda {
       symbol_length = @symbols.length
@@ -57,21 +54,21 @@ class Stock < Aggregator
     }
 
     overwrite_cache_file = lambda {
-      File.open(cache_filename, 'w') do |file|
+      File.open(Stock::CACHE_FILENAME, 'w') do |file|
         file.write(@cache.to_json)
       end
     }
 
     # Attempt to read from file first
     # (over)write file if it doesn't exist, or is 24h+ old.
-    if File.exist?(cache_filename)
+    if File.exist?(Stock::CACHE_FILENAME)
       yesterday  = (Date.today - 1).to_time.to_i
       tomorrow   = (Date.today + 1).to_time.to_i
-      file_ctime = File.ctime(cache_filename).to_date.to_time.to_i
+      file_ctime = File.ctime(Stock::CACHE_FILENAME).to_date.to_time.to_i
 
-      cache_from_file = JSON.parse(File.read(cache_filename))
+      cache_from_file = JSON.parse(File.read(Stock::CACHE_FILENAME))
 
-      mismatched_keys = cache_from_file.keys.length != @symbols.length
+      mismatched_keys = cache_from_file.keys.length != @symbols.length # FIXME: Need to check if same length and a symbol changed
       old_cache = !(file_ctime > yesterday && file_ctime < tomorrow)
 
       if old_cache || mismatched_keys
