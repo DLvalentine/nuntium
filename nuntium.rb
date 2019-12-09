@@ -10,7 +10,7 @@ def main
   Util.listen_for_exit
   Util.clear_term
 
-  aggregator = Aggregator.new('Stock')
+  aggregator = Aggregator.new('Rss')
   cli = Display.new('Cli')
 
   sleep Cli::CLI_SPEED

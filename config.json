@@ -2,20 +2,28 @@
     "aggregators": {
         "Disk": {
             "enabled": false,
-            "files": ["put_files_here.txt"]
+            "files": [
+                "put_files_here.txt"
+            ]
         },
         "Rss": {
-            "enabled": false,
-            "feeds": []
+            "enabled": true,
+            "feeds": {
+                "Hacker News": "https://news.ycombinator.com/rss",
+                "Ars Technica": "http://feeds.arstechnica.com/arstechnica/index",
+                "BBC America": "http://feeds.bbci.co.uk/news/video_and_audio/news_front_page/rss.xml?edition=us",
+                "BBC World": "http://feeds.bbci.co.uk/news/video_and_audio/news_front_page/rss.xml",
+                "Reuters": "http://feeds.reuters.com/Reuters/worldNews",
+                "NPR": "https://www.npr.org/sections/news"
+            }
         },
         "Stock": {
-            "enabled": true,
+            "enabled": false,
             "symbols": [
                 "AMZN",
                 "AAPL", 
                 "MSFT", 
-                "GOOGL",
-                "GE"
+                "GOOGL"
             ]
         }
     }
