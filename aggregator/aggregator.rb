@@ -6,6 +6,7 @@ require 'json'
 class Aggregator
   require_relative 'disk.rb'
   require_relative 'stock.rb'
+  require_relative 'rss.rb'
 
   attr_reader :feed
 

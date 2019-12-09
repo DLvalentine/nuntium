@@ -2,4 +2,5 @@
 
 ## Aggregator class for RSS Feeds, their content, etc.
 class Rss < Aggregator
+  def initialize(config); end
 end
