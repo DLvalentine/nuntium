@@ -26,10 +26,11 @@ class Rss < Aggregator
   #  move on to the next one, and  give the output string.
   def read
     title           = @current_feed.keys.first
+    ## todo: shift probaly not the right thing... or if it is, need to rewrite cache...
     content         = @cache[@current_feed.keys.first] || fetch_feed
     decoded_content = HTMLEntities.new.decode(content&.shift&.dig('title'))
     next_feed
-    "#{title}: #{decoded_content || Rss::NO_VALUE}"
+    "<#{title}>: #{decoded_content || Rss::NO_VALUE}"
   end
 
   private
@@ -96,7 +97,7 @@ class Rss < Aggregator
     @cache[@current_feed.keys.first] = document.items
   end
 
-  ### TODO: probably cnadidate for pulling out into method on Aggregator
+  ### TODO: probably candidate for pulling out into method on Aggregator
   def next_feed
     @current_feed_index += 1
 
