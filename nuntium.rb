@@ -7,14 +7,17 @@ require_relative 'util.rb'
 # TODO : use config, make several aggregators, use CLI options
 # TODO: Add loading icon/thing while chunking data
 def main
-  Util.listen_for_exit
-  Util.clear_term
+  # Util.listen_for_exit
+  # Util.clear_term
 
   aggregator = Aggregator.new('Rss')
   cli = Display.new('Cli')
 
-  sleep Cli::CLI_SPEED
-  cli.display.stream(aggregator)
+  # sleep Cli::CLI_SPEED
+  # cli.display.stream(aggregator)
+  puts aggregator.feed.read
+  puts aggregator.feed.read
+  puts aggregator.feed.read
 end
 
 main

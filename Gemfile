@@ -5,6 +5,8 @@ ruby '>= 2.5.0'
 
 # required
 gem 'colorize'
+gem 'htmlentities'
+gem 'simple-rss'
 gem 'tty-reader'
 
 # development

@@ -42,6 +42,8 @@ class Stock < Aggregator
 
   # Hit the API for each symbol at instantiation instead
   # of at runtime, then write to file.
+  # TODO: Pull out caching piece into utils...? Maybe?
+  # TODO: LOADING TEXT!!!
   def init_cache
     @cache = {}
 

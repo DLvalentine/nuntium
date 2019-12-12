@@ -8,14 +8,15 @@
         },
         "Rss": {
             "enabled": true,
-            "feeds": {
-                "Hacker News": "https://news.ycombinator.com/rss",
-                "Ars Technica": "http://feeds.arstechnica.com/arstechnica/index",
-                "BBC America": "http://feeds.bbci.co.uk/news/video_and_audio/news_front_page/rss.xml?edition=us",
-                "BBC World": "http://feeds.bbci.co.uk/news/video_and_audio/news_front_page/rss.xml",
-                "Reuters": "http://feeds.reuters.com/Reuters/worldNews",
-                "NPR": "https://www.npr.org/sections/news"
-            }
+            "feeds": [
+                { "Hacker News": "https://news.ycombinator.com/rss" },
+                { "Ars Technica": "http://feeds.arstechnica.com/arstechnica/index" },
+                { "BBC America": "http://feeds.bbci.co.uk/news/video_and_audio/news_front_page/rss.xml?edition=us" },
+                { "BBC World": "http://feeds.bbci.co.uk/news/video_and_audio/news_front_page/rss.xml" },
+                { "Reuters": "http://feeds.reuters.com/Reuters/worldNews" },
+                { "NPR": "https://www.npr.org/rss/rss.php?id=1001" },
+                { "Washington Post": "http://feeds.washingtonpost.com/rss/national?tid=lk_inline_manual_11" }
+            ]
         },
         "Stock": {
             "enabled": false,
