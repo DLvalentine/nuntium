@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'io/console'
+require 'colorize'
 require_relative '../util.rb'
 
 ## Implementation of ticker for CLI displays
@@ -13,14 +14,23 @@ class Cli < Display
     Util.poll(Cli::CLI_SPEED) { @width = term_width }
   end
 
-  # TODO: accept multiple aggregators...
-  ## Given an aggregator, continuously read from its feed
+  ## Given an array of aggregators, continuously read from its feed
   #  and display its contents in a scrolling manner.
   #  This will continue in an infinite loop until the program
   #  is terminated via 'q' (see Util module)
-  # @param {Object<Aggregator>} - The aggregator to read from
-  def stream(aggregator)
-    line = "#{' ' * @width}#{aggregator.feed.read}"
+  # @param {Array<Object<Aggregator>>} - The aggregators to read from
+  def stream(aggregators)
+    current = 0
+
+    line = "#{' ' * @width}#{aggregators[current].feed.read}"
+
+    next_agg = lambda {
+      if current < aggregators.length - 1
+        current += 1
+      else
+        current = 0
+      end
+    }
 
     init_indexes = lambda {
       @start = 0
@@ -28,6 +38,7 @@ class Cli < Display
     }
 
     init_indexes.call
+    next_agg.call
 
     loop do
       print "\r#{line.slice(@start..@end)}"
@@ -37,8 +48,9 @@ class Cli < Display
       next unless line[@end + 1].nil?
 
       temp = line[@start..@end]
-      line = "#{temp} * #{aggregator.feed.read}"
+      line = "#{temp} * #{aggregators[current].feed.read}"
       init_indexes.call
+      next_agg.call
     end
   end
 

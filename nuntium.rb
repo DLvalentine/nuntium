@@ -7,17 +7,21 @@ require_relative 'util.rb'
 # TODO : use config, make several aggregators, use CLI options
 # TODO: Add loading icon/thing while chunking data
 def main
-  # Util.listen_for_exit
-  # Util.clear_term
+  files_loaded = File.exist?(Rss::CACHE_FILENAME) && File.exist?(Stock::CACHE_FILENAME)
+  Util.listen_for_exit
+  Util.clear_term
 
-  aggregator = Aggregator.new('Rss')
+  ## TODO: check configs, create for that
+  ## TODO: loading text based on ^ to load for each
+  Util.poll(Cli::CLI_SPEED) { print "\rLoading data..." unless files_loaded }
+
+  stock = Aggregator.new('Stock')
+  rss   = Aggregator.new('Rss')
+
   cli = Display.new('Cli')
 
-  # sleep Cli::CLI_SPEED
-  # cli.display.stream(aggregator)
-  puts aggregator.feed.read
-  puts aggregator.feed.read
-  puts aggregator.feed.read
+  sleep Cli::CLI_SPEED
+  cli.display.stream([rss, stock, stock, stock])
 end
 
 main

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'open-uri'
-require 'colorize'
 require 'json'
 require 'date'
 require_relative '../util.rb'
@@ -10,11 +9,9 @@ require_relative '../util.rb'
 class Stock < Aggregator
   attr_reader :current_symbol
 
-  ## FIXME: carriage return doesn't seem to work with colorize...
-  #         might be an encoding problem....
-  NO_CHANGE  = '(-)' # .yellow
-  POS_CHANGE = '(▲)' # .green
-  NEG_CHANGE = '(▼)' # .red
+  NO_CHANGE  = '(-)'
+  POS_CHANGE = '(▲)'
+  NEG_CHANGE = '(▼)'
   NO_VALUE   = '-'
   DAY_IN_SECONDS = 86_400
   CACHE_FILENAME = 'stock_cache.json'

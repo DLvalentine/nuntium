@@ -19,7 +19,7 @@ class Rss < Aggregator
 
     # local caching
     init_cache
-    Util.poll(Rss::HOUR_IN_SECONDS)
+    Util.poll(Rss::HOUR_IN_SECONDS) { init_cache }
   end
 
   ## Get the rss info for the current feed,
@@ -94,7 +94,11 @@ class Rss < Aggregator
     end
     # rubocop:enable Security/Open
 
-    @cache[@current_feed.keys.first] = document.items
+    # Ensuring string access instead of symbol access.
+    # I know there's probably a better way to do this...
+    # but I can't remember if with_indifferent_access is
+    # a rails thing...
+    @cache[@current_feed.keys.first] = JSON.parse(document.items.to_json)
   end
 
   ### TODO: probably candidate for pulling out into method on Aggregator
