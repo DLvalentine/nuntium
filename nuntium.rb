@@ -13,7 +13,7 @@ def main
   ## TODO: check configs, create for that
   ## TODO: loading text based on ^ to load for each
   ## TODO: make sure this thread gets killed...
-  Util.poll(Cli::CLI_SPEED) { print "\rLoading data..." unless check_config }
+  Util.poll(Cli::CLI_SPEED) { print "\rLoading data..." unless caches_valid? }
 
   stock = Aggregator.new('Stock')
   rss   = Aggregator.new('Rss')
@@ -24,7 +24,8 @@ def main
   cli.display.stream([rss, stock, stock, stock])
 end
 
-def check_config
+# TODO: invalidate cache frfr when they are old or mismatched...
+def caches_valid?
   File.exist?(Rss::CACHE_FILENAME) && File.exist?(Stock::CACHE_FILENAME)
 end
 
