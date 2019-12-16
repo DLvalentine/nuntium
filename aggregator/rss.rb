@@ -29,6 +29,7 @@ class Rss < Aggregator
     ## todo: shift probaly not the right thing... or if it is, need to rewrite cache...
     content         = @cache[@current_feed.keys.first] || fetch_feed
     decoded_content = HTMLEntities.new.decode(content&.shift&.dig('title'))
+    @cache[@current_feed.keys.first] = nil if content.empty?
     next_feed
     "<#{title}>: #{decoded_content || Rss::NO_VALUE}"
   end
