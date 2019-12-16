@@ -1,1 +1,2 @@
 - Write script to parse project files and append this with TODOs/FIXMEs/etc.
+- Figure a way to delete files or replace "loading data..." text

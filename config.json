@@ -13,7 +13,9 @@
                 { "Ars Technica": "http://feeds.arstechnica.com/arstechnica/index" },
                 { "Reuters": "http://feeds.reuters.com/Reuters/worldNews" },
                 { "NPR": "https://www.npr.org/rss/rss.php?id=1001" },
-                { "Washington Post": "http://feeds.washingtonpost.com/rss/national?tid=lk_inline_manual_11" }
+                { "Washington Post": "http://feeds.washingtonpost.com/rss/national?tid=lk_inline_manual_11" },
+                { "BBC World":  "http://feeds.bbci.co.uk/news/world/rss.xml" },
+                { "BBC US": "http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml" }
             ]
         },
         "Stock": {
@@ -22,7 +24,10 @@
                 "AMZN",
                 "AAPL", 
                 "MSFT", 
-                "GOOGL"
+                "GOOGL",
+                "NVDA",
+                "AMD",
+                "INTC"
             ]
         }
     }
