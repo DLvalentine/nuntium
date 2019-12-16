@@ -1,8 +1,1 @@
 - Write script to parse project files and append this with TODOs/FIXMEs/etc.
-- General design mind-dump
-- Documentation (keep at it)
-- Orca executable or similar
-- Exception handling
-- Cli options...
-- Documentation related to installation (Windows will need ruby, LED display instruction, etc.) 
-- Prod prep: remove debug scripts? Might be useful to keep them in the source, but they should not be in the releases
