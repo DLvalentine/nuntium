@@ -48,7 +48,9 @@ class Stock < Aggregator
       symbol_length = @symbols.length
       symbol_length.times do |_index|
         read
-        sleep 2 # prevent throttling... ## TODO...retries?
+        sleep 0.5 # prevent throttling...
+         ## TODO...retries?
+         ## TODO...bulk call?
       end
     }
 
