@@ -1,6 +1,7 @@
 - Figure a way to delete files or replace "loading data..." text
 - Figure a better way to display "loading" and message text
 - Improve throttling issue with stocks -- limited to 5 per minute....and 500 calls per day.
+- ^ find some way to collect the missing ones... over time... 
 - Add keyboard listener to open site
 - Add speed controls (inc. pause)
 - ensure htmlentity decoder does not mess with the stock symbol unicode stuff....
