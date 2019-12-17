@@ -10,10 +10,10 @@
 
 --- AUTO GENERATED ---
 .rubocop.yml:# TODO: Find/improve trouble spots, if possible
-TODO.txt:.rubocop.yml:# TODO: Find/improve trouble spots, if possible
 aggregator/aggregator.rb:  ## TODO: Only here to serve as an implementation reminder. Remove for prod.
 aggregator/disk.rb:  # TODO: make a file directory attr in config.json, since
 aggregator/disk.rb:  #  TODO: an optimization would be to check the size first, and skip
+aggregator/rss.rb:    ## todo: shift probaly not the right thing... or if it is, need to rewrite cache...
 aggregator/rss.rb:  # TODO: Pull out caching piece into utils...? Maybe?
 aggregator/rss.rb:  # TODO: LOADING TEXT!!!
 aggregator/rss.rb:  ### TODO: probably candidate for pulling out into method on Aggregator

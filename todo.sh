@@ -1,3 +1,3 @@
 #!/bin/bash
 
-git grep -EI "TODO|FIXME" >> TODO.txt
+git grep -EIi "TODO|FIXME" >> TODO.txt
