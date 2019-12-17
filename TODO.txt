@@ -3,6 +3,8 @@
 - Improve throttling issue with stocks -- limited to 5 per minute....and 500 calls per day.
 - Add keyboard listener to open site
 - Add speed controls (inc. pause)
+- ensure htmlentity decoder does not mess with the stock symbol unicode stuff....
+- use super for inherited methods, duh
 
 --- AUTO GENERATED ---
 .rubocop.yml:# TODO: Find/improve trouble spots, if possible
