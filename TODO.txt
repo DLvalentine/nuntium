@@ -6,6 +6,7 @@
 - Add speed controls (inc. pause)
 - ensure htmlentity decoder does not mess with the stock symbol unicode stuff....
 - use super for inherited methods, duh
+- ensure 1hr refresh (test on shorter time) actually works for rss, stock; lol
 
 --- AUTO GENERATED ---
 .rubocop.yml:# TODO: Find/improve trouble spots, if possible
