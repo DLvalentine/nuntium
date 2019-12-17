@@ -1,0 +1,1 @@
+git grep -EI "TODO|FIXME" >> TODO.txt

@@ -1,4 +1,29 @@
-- Write script to parse project files and append this with TODOs/FIXMEs/etc.
 - Figure a way to delete files or replace "loading data..." text
 - Figure a better way to display "loading" and message text
 - Improve throttling issue with stocks -- limited to 5 per minute....and 500 calls per day.
+- Add keyboard listener to open site
+- Add speed controls (inc. pause)
+
+--- AUTO GENERATED ---
+.rubocop.yml:# TODO: Find/improve trouble spots, if possible
+TODO.txt:.rubocop.yml:# TODO: Find/improve trouble spots, if possible
+aggregator/aggregator.rb:  ## TODO: Only here to serve as an implementation reminder. Remove for prod.
+aggregator/disk.rb:  # TODO: make a file directory attr in config.json, since
+aggregator/disk.rb:  #  TODO: an optimization would be to check the size first, and skip
+aggregator/rss.rb:  # TODO: Pull out caching piece into utils...? Maybe?
+aggregator/rss.rb:  # TODO: LOADING TEXT!!!
+aggregator/rss.rb:  ### TODO: probably candidate for pulling out into method on Aggregator
+aggregator/stock.rb:  # TODO: Pull out caching piece into utils...? Maybe?
+aggregator/stock.rb:  # TODO: LOADING TEXT!!!
+aggregator/stock.rb:          sleep 3 # TODO: arbitrary, need to baseline this...
+aggregator/stock.rb:    ### TODO: candidate for pulling out into method on Aggregator
+aggregator/stock.rb:    ### TODO: candidate for optimization
+display/display.rb:  ## TODO: Only here to serve as an implementation reminder. Remove for prod.
+nuntium.rb:# TODO : use config, make several aggregators, use CLI options
+nuntium.rb:# TODO: Add loading icon/thing while chunking data
+nuntium.rb:  ## TODO: check configs, create for that
+nuntium.rb:  ## TODO: loading text based on ^ to load for each
+nuntium.rb:  ## TODO: make sure this thread gets killed...
+nuntium.rb:# TODO: invalidate cache frfr when they are old or mismatched...
+util.rb:  ### TODO: Add more keyboard listeners -- one to pause the feed, one to follow
+util.rb:  ### TODO: this might make more sense as a Display::Cli method.
