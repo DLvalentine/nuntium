@@ -70,6 +70,7 @@ class Rss < Aggregator
       old_cache = !(file_ctime > hour_ago && file_ctime < next_hour)
 
       if old_cache || mismatched_keys
+        File.delete(Rss::CACHE_FILENAME)
         get_feed_values.call
         overwrite_cache_file.call
       else

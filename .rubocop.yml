@@ -1,15 +1,17 @@
-# 15 is a little tight in some loops.
 # TODO: Find/improve trouble spots, if possible
+
+
 Metrics/AbcSize:
   Max: 45
 
-# 10 is a little too strict.
 Metrics/MethodLength:
   Max: 35
 
-# 80 is a little too strict.
 Metrics/LineLength:
   Max: 100
 
 Metrics/PerceivedComplexity:
+  Max: 10
+
+Metrics/CyclomaticComplexity:
   Max: 10

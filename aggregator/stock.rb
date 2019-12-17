@@ -46,11 +46,12 @@ class Stock < Aggregator
 
     get_symbol_values = lambda {
       symbol_length = @symbols.length
-      symbol_length.times do |_index|
+      symbol_length.times do |index|
+        if symbol_length >= 5 && index >= 4
+          puts 'More than 5 stock symbols, sleeping to avoid throttling...'
+          sleep 3 # TODO: arbitrary, need to baseline this...
+        end
         read
-        sleep 0.5 # prevent throttling...
-         ## TODO...retries?
-         ## TODO...bulk call?
       end
     }
 
@@ -74,6 +75,7 @@ class Stock < Aggregator
       old_cache = !(file_ctime > yesterday && file_ctime < tomorrow)
 
       if old_cache || mismatched_keys
+        File.delete(Stock::CACHE_FILENAME)
         get_symbol_values.call
         overwrite_cache_file.call
       else

@@ -21,6 +21,7 @@ def main
   cli = Display.new('Cli')
 
   sleep Cli::CLI_SPEED
+  Util.clear_term
   cli.display.stream([rss, stock, stock, stock])
 end
 
