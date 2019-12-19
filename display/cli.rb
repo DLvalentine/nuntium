@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'io/console'
-require 'colorize'
 require_relative '../util.rb'
 
 ## Implementation of ticker for CLI displays
