@@ -9,6 +9,7 @@
 - ensure 1hr refresh (test on shorter time) actually works for rss, stock; lol
 - write tests...
 - stock/rss refresh in background! after shift -> empty
+- write scaffolding for c extensions in order to obsfucate things
 
 --- AUTO GENERATED ---
 .rubocop.yml:# TODO: Find/improve trouble spots, if possible
