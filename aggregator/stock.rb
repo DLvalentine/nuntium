@@ -4,6 +4,8 @@ require 'open-uri'
 require 'json'
 require 'date'
 require_relative '../util.rb'
+require_relative '../ext/api_ext'
+include ApiExt
 
 ## Aggregator class for stock symbols, their current value and movement
 class Stock < Aggregator
@@ -20,7 +22,7 @@ class Stock < Aggregator
     @symbols = config['symbols']
     @current_symbol = @symbols.first
     @current_symbol_index = 0
-    @api = 'W4JK4YBUEQTP6PIZ'
+    @api = alpha_vantage
 
     # local caching
     init_cache
