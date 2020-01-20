@@ -9,6 +9,9 @@
 - ensure 1hr refresh (test on shorter time) actually works for rss, stock; lol
 - write tests...
 - stock/rss refresh in background! after shift -> empty
+- Plan out other displays (LED Matrix, GUI, etc.) and their features
+- Turn some of these into tasks, or update TODO script to do that for me 
+- Look deeper into https://github.com/shoes/shoes4 for Ruby GUI
 
 --- AUTO GENERATED ---
 .rubocop.yml:# TODO: Find/improve trouble spots, if possible
