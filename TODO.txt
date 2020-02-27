@@ -13,9 +13,11 @@
 - Turn some of these into tasks, or update TODO script to do that for me 
 - Look deeper into https://github.com/shoes/shoes4 for Ruby GUI
 - Take a look at class structure again, make more use of inheritance where it makes sense. 
+- write up documentation for gpg/secrets for rss feature?
 
 --- AUTO GENERATED ---
 .rubocop.yml:# TODO: Find/improve trouble spots, if possible
+TODO.txt:- Turn some of these into tasks, or update TODO script to do that for me 
 aggregator/aggregator.rb:  ## TODO: Only here to serve as an implementation reminder. Remove for prod.
 aggregator/disk.rb:  # TODO: make a file directory attr in config.json, since
 aggregator/disk.rb:  #  TODO: an optimization would be to check the size first, and skip
@@ -23,6 +25,7 @@ aggregator/rss.rb:    ## todo: shift probaly not the right thing... or if it is,
 aggregator/rss.rb:  # TODO: Pull out caching piece into utils...? Maybe?
 aggregator/rss.rb:  # TODO: LOADING TEXT!!!
 aggregator/rss.rb:  ### TODO: probably candidate for pulling out into method on Aggregator
+aggregator/stock.rb:    @api = File.open('./sec.conf', &:gets).chomp # TODO: add in error if user cannot use sec.conf
 aggregator/stock.rb:  # TODO: Pull out caching piece into utils...? Maybe?
 aggregator/stock.rb:  # TODO: LOADING TEXT!!!
 aggregator/stock.rb:          sleep 3 # TODO: arbitrary, need to baseline this...
@@ -35,5 +38,7 @@ nuntium.rb:  ## TODO: check configs, create for that
 nuntium.rb:  ## TODO: loading text based on ^ to load for each
 nuntium.rb:  ## TODO: make sure this thread gets killed...
 nuntium.rb:# TODO: invalidate cache frfr when they are old or mismatched...
+todo.bat:git grep -EIi "TODO|FIXME" >> TODO.txt
+todo.sh:git grep -EIi "TODO|FIXME" >> TODO.txt
 util.rb:  ### TODO: Add more keyboard listeners -- one to pause the feed, one to follow
 util.rb:  ### TODO: this might make more sense as a Display::Cli method.
