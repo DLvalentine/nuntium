@@ -20,7 +20,7 @@ class Stock < Aggregator
     @symbols = config['symbols']
     @current_symbol = @symbols.first
     @current_symbol_index = 0
-    @api = File.open('./sec.conf', &:gets).chomp # TODO: add in error if user cannot use sec.conf
+    @api = `./sec.bat`.chomp # TODO: add in gpg error if nonexistant? or let OS do it?
 
     # local caching
     init_cache

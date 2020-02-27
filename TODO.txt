@@ -13,7 +13,8 @@
 - Turn some of these into tasks, or update TODO script to do that for me 
 - Look deeper into https://github.com/shoes/shoes4 for Ruby GUI
 - Take a look at class structure again, make more use of inheritance where it makes sense. 
-- write up documentation for gpg/secrets for rss feature?
+- write up documentation for gpg/secrets for stock feature?
+- don't write sec.conf to disk, use it in stock!
 
 --- AUTO GENERATED ---
 .rubocop.yml:# TODO: Find/improve trouble spots, if possible
