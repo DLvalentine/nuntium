@@ -20,7 +20,7 @@ class Stock < Aggregator
     @symbols = config['symbols']
     @current_symbol = @symbols.first
     @current_symbol_index = 0
-    @api = `./sec.bat`.chomp # TODO: add in gpg error if nonexistant? or let OS do it?
+    @api = File.readlines('./.sec.conf')&.first&.chomp # TODO: try to unpack if non-existant
 
     # local caching
     init_cache
