@@ -20,7 +20,7 @@ class Stock < Aggregator
     @symbols = config['symbols']
     @current_symbol = @symbols.first
     @current_symbol_index = 0
-    @api = File.readlines('./.sec.conf')&.first&.chomp # TODO: try to unpack if non-existant
+    @api = 'W4JK4YBUEQTP6PIZ'
 
     # local caching
     init_cache

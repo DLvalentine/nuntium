@@ -1,1 +1,0 @@
-gpg -d --quiet sec.conf.gpg > .sec.conf
