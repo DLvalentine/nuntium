@@ -17,6 +17,14 @@ module Util
     end
   end
 
+  # Similar to #poll, but without the looping action.
+  def self.wait(delay)
+    Thread.new do
+      sleep delay
+      yield
+    end
+  end
+
   ### TODO: Add more keyboard listeners -- one to pause the feed, one to follow
   #         a link (if in CLI mode...?) etc.
   def self.listen_for_exit

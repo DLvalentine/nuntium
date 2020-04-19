@@ -13,7 +13,6 @@
 
 --- AUTO GENERATED ---
 .rubocop.yml:# TODO: Find/improve trouble spots, if possible
-TODO.txt:- Turn some of these into tasks, or update TODO script to do that for me 
 aggregator/aggregator.rb:  ## TODO: Only here to serve as an implementation reminder. Remove for prod.
 aggregator/disk.rb:  # TODO: make a file directory attr in config.json, since
 aggregator/disk.rb:  #  TODO: an optimization would be to check the size first, and skip
@@ -21,10 +20,11 @@ aggregator/rss.rb:    ## todo: shift probaly not the right thing... or if it is,
 aggregator/rss.rb:  # TODO: Pull out caching piece into utils...? Maybe?
 aggregator/rss.rb:  # TODO: LOADING TEXT!!!
 aggregator/rss.rb:  ### TODO: probably candidate for pulling out into method on Aggregator
-aggregator/stock.rb:    @api = File.readlines('./.sec.conf')&.first&.chomp # TODO: try to unpack if non-existant
 aggregator/stock.rb:  # TODO: Pull out caching piece into utils...? Maybe?
 aggregator/stock.rb:  # TODO: LOADING TEXT!!!
-aggregator/stock.rb:          sleep 3 # TODO: arbitrary, need to baseline this...
+aggregator/stock.rb:        if symbol_length > 5 && index > 4 # TODO: move to handling this in batches of 5.
+aggregator/stock.rb:    # TODO: DRY this up, make sure it isn't being called too much (see init_cache)
+aggregator/stock.rb:    # TODO: simple file operations like this are a good candidate for optimization/moving
 aggregator/stock.rb:    ### TODO: candidate for pulling out into method on Aggregator
 aggregator/stock.rb:    ### TODO: candidate for optimization
 display/display.rb:  ## TODO: Only here to serve as an implementation reminder. Remove for prod.

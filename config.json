@@ -21,7 +21,7 @@
             ]
         },
         "Stock": {
-            "enabled": false,
+            "enabled": true,
             "symbols": [
                 "AMZN",
                 "AAPL", 

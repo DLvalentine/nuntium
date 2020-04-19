@@ -6,21 +6,24 @@ require 'date'
 require_relative '../util.rb'
 
 ## Aggregator class for stock symbols, their current value and movement
+# NOTE: restricted by alphavantage's TPS/rules -- see: https://www.alphavantage.co/support/#api-key
+# If you're having trouble with the stock feature, consider getting your own damn API key ;)
 class Stock < Aggregator
   attr_reader :current_symbol
 
-  NO_CHANGE  = '(-)'
-  POS_CHANGE = '(▲)'
-  NEG_CHANGE = '(▼)'
-  NO_VALUE   = '-'
+  NO_CHANGE      = '(-)'
+  POS_CHANGE     = '(▲)'
+  NEG_CHANGE     = '(▼)'
+  NO_VALUE       = '-'
   DAY_IN_SECONDS = 86_400
   CACHE_FILENAME = 'stock_cache.json'
+  STOCK_TPS      = 65 # 5 calls per 60 secs permitted, 500 calls per day
 
   def initialize(config)
     @symbols = config['symbols']
     @current_symbol = @symbols.first
     @current_symbol_index = 0
-    @api = 'W4JK4YBUEQTP6PIZ'
+    @api = 'W4JK4YBUEQTP6PIZ' # I know, sue me
 
     # local caching
     init_cache
@@ -47,11 +50,12 @@ class Stock < Aggregator
     get_symbol_values = lambda {
       symbol_length = @symbols.length
       symbol_length.times do |index|
-        if symbol_length >= 5 && index >= 4
-          puts 'More than 5 stock symbols, sleeping to avoid throttling...'
-          sleep 3 # TODO: arbitrary, need to baseline this...
+        # API limits -- if you are tracking more than 5 symbols, I'll have to add a delay
+        if symbol_length > 5 && index > 4 # TODO: move to handling this in batches of 5.
+          Util.wait(STOCK_TPS) { quote }
+        else
+          read
         end
-        read
       end
     }
 
@@ -117,7 +121,16 @@ class Stock < Aggregator
                   end
     end
 
+    old_value = @cache[@current_symbol]
     @cache[@current_symbol] = "#{@current_symbol} $#{@value} #{@movement}"
+
+    return unless @cache[@current_symbol] != old_value
+
+    # TODO: DRY this up, make sure it isn't being called too much (see init_cache)
+    # TODO: simple file operations like this are a good candidate for optimization/moving
+    File.open(Stock::CACHE_FILENAME, 'w') do |file|
+      file.write(@cache.to_json)
+    end
   end
 
   # Move to the next symbol as configured
