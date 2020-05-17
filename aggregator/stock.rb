@@ -17,7 +17,7 @@ class Stock < Aggregator
   NO_VALUE       = '-'
   DAY_IN_SECONDS = 86_400
   CACHE_FILENAME = 'stock_cache.json'
-  STOCK_TPS      = 65 # 5 calls per 60 secs permitted, 500 calls per day
+  STOCK_TPS      = 65 # 5 calls per 60 secs permitted, 500 calls per day.
 
   def initialize(config)
     @symbols = config['symbols']
@@ -32,9 +32,14 @@ class Stock < Aggregator
 
   ## Get the quote for the current symbol,
   #   move to the next one, and give the output string.
+  #   This should only display stocks that have a value returned.
   def read
-    output_str = @cache[@current_symbol] || quote
-    next_symbol
+    output_str = ''
+    loop do
+      output_str = @cache[@current_symbol] || quote
+      next_symbol
+      break unless output_str.include?('$-')
+    end
     output_str
   end
 
@@ -51,8 +56,10 @@ class Stock < Aggregator
       symbol_length = @symbols.length
       symbol_length.times do |index|
         # API limits -- if you are tracking more than 5 symbols, I'll have to add a delay
-        if symbol_length > 5 && index > 4 # TODO: move to handling this in batches of 5.
-          Util.wait(STOCK_TPS) { quote }
+        if symbol_length > 5 && index > 4 # TODO: Handle this in batches, so we can support more than 10 symbols, staggered
+          # TODO: this fires even if we have it in a cached file. Not the end of the world, but optimally we want to redo this...
+          #       works for now.
+          Util.wait(STOCK_TPS) { quote_missing_symbol(@symbols[index]) }
         else
           read
         end
@@ -131,6 +138,52 @@ class Stock < Aggregator
     File.open(Stock::CACHE_FILENAME, 'w') do |file|
       file.write(@cache.to_json)
     end
+
+    @cache[@current_symbol]
+  end
+
+  # Acts similar to quote, but for specific symbols
+  def quote_missing_symbol(missing_symbol)
+    endpoint = 'https://www.alphavantage.co/'
+    query = "query?function=GLOBAL_QUOTE&symbol=#{missing_symbol}&apikey=#{@api}"
+
+    #### TODO: Break this out into a new function, since #quote uses it, too. Not doing it now for the sake of time.
+
+    # Not using Kernel#Open, Rubocop is dumb
+    # rubocop:disable Security/Open
+    resp = JSON.parse(open("#{endpoint}#{query}").read)['Global Quote']
+    # rubocop:enable Security/Open
+
+    if resp.nil?
+      @value = Stock::NO_VALUE
+      @movement = Stock::NO_CHANGE
+    else
+      @value = resp['05. price'].to_i
+      change = resp['09. change'].to_i
+
+      @movement = if change.positive?
+                    Stock::POS_CHANGE
+                  elsif change.negative?
+                    Stock::NEG_CHANGE
+                  elsif change.zero?
+                    Stock::NO_CHANGE
+                  else
+                    Stock::NO_CHANGE
+                  end
+    end
+
+    old_value = @cache[missing_symbol]
+    @cache[missing_symbol] = "#{missing_symbol} $#{@value} #{@movement}"
+
+    return unless @cache[missing_symbol] != old_value
+
+    # TODO: DRY this up, make sure it isn't being called too much (see init_cache)
+    # TODO: simple file operations like this are a good candidate for optimization/moving
+    File.open(Stock::CACHE_FILENAME, 'w') do |file|
+      file.write(@cache.to_json)
+    end
+
+    @cache[missing_symbol]
   end
 
   # Move to the next symbol as configured

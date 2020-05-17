@@ -21,6 +21,7 @@
             ]
         },
         "Stock": {
+            "NOTE": "This feautre only supports up to 10 stock symbols right now, sorry",
             "enabled": true,
             "symbols": [
                 "AMZN",

@@ -22,7 +22,11 @@ aggregator/rss.rb:  # TODO: LOADING TEXT!!!
 aggregator/rss.rb:  ### TODO: probably candidate for pulling out into method on Aggregator
 aggregator/stock.rb:  # TODO: Pull out caching piece into utils...? Maybe?
 aggregator/stock.rb:  # TODO: LOADING TEXT!!!
-aggregator/stock.rb:        if symbol_length > 5 && index > 4 # TODO: move to handling this in batches of 5.
+aggregator/stock.rb:        if symbol_length > 5 && index > 4 # TODO: Handle this in batches, so we can support more than 10 symbols, staggered
+aggregator/stock.rb:          # TODO: this fires even if we have it in a cached file. Not the end of the world, but optimally we want to redo this...
+aggregator/stock.rb:    # TODO: DRY this up, make sure it isn't being called too much (see init_cache)
+aggregator/stock.rb:    # TODO: simple file operations like this are a good candidate for optimization/moving
+aggregator/stock.rb:    #### TODO: Break this out into a new function, since #quote uses it, too. Not doing it now for the sake of time.
 aggregator/stock.rb:    # TODO: DRY this up, make sure it isn't being called too much (see init_cache)
 aggregator/stock.rb:    # TODO: simple file operations like this are a good candidate for optimization/moving
 aggregator/stock.rb:    ### TODO: candidate for pulling out into method on Aggregator
