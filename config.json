@@ -18,6 +18,7 @@
 				{ "Kotaku": "https://kotaku.com/rss" },
                 { "Game Informer": "https://www.gameinformer.com/rss.xml" },
                 { "Reddit: World News": "https://www.reddit.com/r/worldnews/.rss" }
+            ]
         },
         "Stock": {
             "NOTE": "This feautre only supports up to 10 stock symbols right now, sorry",
