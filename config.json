@@ -16,7 +16,10 @@
                 { "BBC World":  "http://feeds.bbci.co.uk/news/world/rss.xml" },
                 { "BBC US": "http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml" },
 				{ "Kotaku": "https://kotaku.com/rss" },
-				{ "Game Informer": "https://www.gameinformer.com/rss.xml" }
+                { "Game Informer": "https://www.gameinformer.com/rss.xml" },
+                { "Reddit: World News": "https://www.reddit.com/r/worldnews/.rss" },
+                { "New York Times: World News": "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/world/rss.xml" },
+                { "Vox": "https://www.vox.com/rss/index.xml" }
             ]
         },
         "Stock": {
