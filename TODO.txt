@@ -14,6 +14,7 @@
 - maybe look into git hooks to update this todo list automatically.. and to do other things. Just as an excercise in learning git hooks.
 - clean up... or really, start using, branches.
 - Look into why http/too many requests is firing. Might need to jitter the rss requests. I reduced the number of feeds in the default conf for now.
+- rein in the scope of this, update the repo docs to reflect it. Going to focus on CLI and GUI for now.
 
 --- AUTO GENERATED ---
 .rubocop.yml:# TODO: Find/improve trouble spots, if possible
