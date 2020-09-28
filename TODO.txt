@@ -19,6 +19,7 @@
 - need better exception handling in rss aggregator
 - come up with config template
 - remove caps from conf...?
+- Add more details to README, to include the ahk stuff I added as a bonus to our Windows users out there <3
 
 --- AUTO GENERATED ---
 .rubocop.yml:# TODO: Find/improve trouble spots, if possible
