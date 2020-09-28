@@ -23,7 +23,10 @@ class Stock < Aggregator
     @symbols = config['symbols']
     @current_symbol = @symbols.first
     @current_symbol_index = 0
-    @api = 'W4JK4YBUEQTP6PIZ' # I know, sue me
+
+    # Not really concerned about this. If it dies, so does this feature until I come up
+    # with a better way to grab stocks. This is just a side-project, anyway :)
+    @api = 'W4JK4YBUEQTP6PIZ'
 
     # local caching
     init_cache

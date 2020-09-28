@@ -13,12 +13,13 @@ class Aggregator
   def initialize(type, config = nil)
     @type = type
     begin
-      @feed = Object.const_get(type).new(config || read_config)
+      @feed = Object.const_get(type.capitalize).new(config || read_config)
     rescue NameError
       raise ArgumentError, "Aggregator class \"#{@type}\" does not exist."
     end
   end
 
+  ## TODO: actually this will be useful, I just need to implement it correctly.
   ## TODO: Only here to serve as an implementation reminder. Remove for prod.
   # rubocop:disable all
   def method_missing(method_called)
@@ -27,18 +28,10 @@ class Aggregator
   end
   # rubocop:enable all
 
-  ## @returns {Hash} - hash containing the enabled
-  #   aggregators marked in config.json
-  def self.enabled_aggregators
-    JSON.parse(File.read('./config.json'))['aggregators'].select do |k, v|
-      { k => v } if v['enabled']
-    end
-  end
-
   private
 
   # @returns {Hash} - hash containing the configuration for this
-  #   instance's type of aggregator, enabled or not.
+  #   instance's type of aggregator.
   def read_config
     JSON.parse(File.read('./config.json'))['aggregators'][@type]
   end

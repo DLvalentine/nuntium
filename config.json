@@ -1,13 +1,13 @@
 {
     "aggregators": {
-        "Disk": {
-            "enabled": false,
+        "disk": {
+            "_NOTE": "files is an array of strings, where the string is the filename + extension",
             "files": [
                 "put_files_here.txt"
             ]
         },
-        "Rss": {
-            "enabled": true,
+        "rss": {
+            "_NOTE": "feeds is an array of objects where the key is presentational, and the value is the rss URL",
             "feeds": [
                 { "Hacker News": "https://news.ycombinator.com/rss" },
                 { "Ars Technica": "http://feeds.arstechnica.com/arstechnica/index" },
@@ -20,17 +20,20 @@
                 { "Reddit: World News": "https://www.reddit.com/r/worldnews/.rss" }
             ]
         },
-        "Stock": {
-            "NOTE": "This feautre only supports up to 10 stock symbols right now, sorry",
-            "enabled": true,
+        "stock": {
+            "_NOTE": "This feature only supports up to 10 stock symbols right now, sorry. But symbols is an array of strings that are stock symbols",
             "symbols": [
                 "AMZN",
                 "AAPL", 
                 "MSFT", 
                 "GOOGL",
                 "NVDA",
-		"ATVI"
+		        "ATVI"
             ]
         }
+    },
+    "displays" : {
+        "_NOTE": "stream_format is used to govern the order of how data is streamed. Below, you get 1 rss feed, followed by 3 stocks, then it repeats.",
+        "stream_format": ["rss", "stock", "stock", "stock"]
     }
 }

@@ -1,23 +1,29 @@
 - Figure a way to delete files or replace "loading data..." text
 - Figure a better way to display "loading" and message text
-- Improve throttling issue with stocks -- limited to 5 per minute....and 500 calls per day.
-- ^ find some way to collect the missing ones... over time... will remove the need for "sleeping" text
+- Improve throttling issue with stocks, apply to rss feeds
 - Add keyboard listener to open site
 - Add speed controls (inc. pause)
 - ensure htmlentity decoder does not mess with the stock symbol unicode stuff....
 - use super for inherited methods, duh
 - stock/rss refresh in background! after shift -> empty
-- Plan out other displays (LED Matrix, GUI, etc.) and their features -- maybe a rails app integration???
-- Look deeper into https://github.com/shoes/shoes4 for Ruby GUI
 - Take a look at class structure again, make more use of inheritance where it makes sense. 
 - Error handling for RSS feeds that don't exist (Reuters pulled theirs, and weird errors started happening on my end)
 - maybe look into git hooks to update this todo list automatically.. and to do other things. Just as an excercise in learning git hooks.
 - clean up... or really, start using, branches.
 - Look into why http/too many requests is firing. Might need to jitter the rss requests. I reduced the number of feeds in the default conf for now.
-- rein in the scope of this, update the repo docs to reflect it. Going to focus on CLI and GUI for now.
+- rein in the scope of this, update the repo docs to reflect it. Going to focus on CLI and GUI for now, and maybe come up with one more aggregator?
+- I want to come up with a way to... release this with a DB of rss feeds that exist? There doesn't seem to be a way to discover RSS feeds easily
+- come up with CLI options => override config stuff
+- be able to handle more than 10 stock symbols, eventually
+- might make sense to add a JSON reader function to util.rb, and then make specific uses of it in the aggregator classes
+- need better exception handling in rss aggregator
+- come up with config template
+- remove caps from conf...?
 
 --- AUTO GENERATED ---
 .rubocop.yml:# TODO: Find/improve trouble spots, if possible
+TODO.txt:- maybe look into git hooks to update this todo list automatically.. and to do other things. Just as an excercise in learning git hooks.
+aggregator/aggregator.rb:  ## TODO: actually this will be useful, I just need to implement it correctly.
 aggregator/aggregator.rb:  ## TODO: Only here to serve as an implementation reminder. Remove for prod.
 aggregator/disk.rb:  # TODO: make a file directory attr in config.json, since
 aggregator/disk.rb:  #  TODO: an optimization would be to check the size first, and skip
@@ -37,12 +43,12 @@ aggregator/stock.rb:    # TODO: simple file operations like this are a good cand
 aggregator/stock.rb:    ### TODO: candidate for pulling out into method on Aggregator
 aggregator/stock.rb:    ### TODO: candidate for optimization
 display/display.rb:  ## TODO: Only here to serve as an implementation reminder. Remove for prod.
-nuntium.rb:# TODO : use config, make several aggregators, use CLI options
-nuntium.rb:# TODO: Add loading icon/thing while chunking data
-nuntium.rb:  ## TODO: check configs, create for that
-nuntium.rb:  ## TODO: loading text based on ^ to load for each
-nuntium.rb:  ## TODO: make sure this thread gets killed...
-nuntium.rb:# TODO: invalidate cache frfr when they are old or mismatched...
+nuntium.rb:# TODO : use config
+nuntium.rb:# TODO: Add improved loading icon/thing while chunking data
+nuntium.rb:  ## TODO: make sure this thread gets killed...after you add in the frfr invalidation... include better loading text info?
+nuntium.rb:# TODO: invalidate cache frfr when they are old or mismatched...this is happening at the aggregator level right now
+nuntium.rb:# TODO: this might be better off in util?
+nuntium.rb:# TODO: this might be better off in util?
 todo.bat:git grep -EIi "TODO|FIXME" >> TODO.txt
 util.rb:  ### TODO: Add more keyboard listeners -- one to pause the feed, one to follow
 util.rb:  ### TODO: this might make more sense as a Display::Cli method.
