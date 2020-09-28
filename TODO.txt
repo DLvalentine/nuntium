@@ -20,6 +20,7 @@
 - come up with config template
 - remove caps from conf...?
 - Add more details to README, to include the ahk stuff I added as a bonus to our Windows users out there <3
+- add a pause button? Or check to see compatibility with CLI pause
 
 --- AUTO GENERATED ---
 .rubocop.yml:# TODO: Find/improve trouble spots, if possible
