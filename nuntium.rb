@@ -4,7 +4,6 @@ require_relative './display/display.rb'
 require_relative './aggregator/aggregator.rb'
 require_relative 'util.rb'
 
-# TODO : use config
 # TODO: Add improved loading icon/thing while chunking data
 def main
   # Setup exit hook, clear term of old data
