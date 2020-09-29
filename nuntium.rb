@@ -3,11 +3,12 @@
 require_relative './display/display.rb'
 require_relative './aggregator/aggregator.rb'
 require_relative 'util.rb'
+require_relative 'keyboard.rb'
 
 # TODO: Add improved loading icon/thing while chunking data
 def main
   # Setup exit hook, clear term of old data
-  Util.listen_for_exit
+  Keyboard.listen_for_exit
   Util.clear_term
 
   ## TODO: make sure this thread gets killed...after you add in the frfr invalidation... include better loading text info?

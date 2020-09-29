@@ -25,16 +25,6 @@ module Util
     end
   end
 
-  ### TODO: Add more keyboard listeners -- one to pause the feed, one to follow
-  #         a link (if in CLI mode...?) etc.
-  def self.listen_for_exit
-    @reader = TTY::Reader.new
-    Util.poll(Cli::CLI_SPEED) do
-      exit if @reader.read_char == 'q'
-      Util.clear_term
-    end
-  end
-
   ### TODO: this might make more sense as a Display::Cli method.
   def self.clear_term
     Thread.new do

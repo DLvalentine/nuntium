@@ -1,7 +1,7 @@
 --- GENERAL ---
 
 - Add keyboard listener to open aggregator in OS => rss to link, stock to google, file to file, etc.
-- Add speed controls (inc. pause)
+- Add speed controls (inc. pause?)
 - rein in the scope of this, update the repo docs to reflect it. Going to focus on CLI and GUI for now, and maybe come up with one more aggregator?
 - I want to come up with a way to... release this with a DB of rss feeds that exist? There doesn't seem to be a way to discover RSS feeds easily
 - Take a look at class structure again, make more use of inheritance where it makes sense. 
@@ -15,7 +15,7 @@
 - Improve throttling issue with stocks, apply to rss feeds
 - ensure stock/rss refresh in background! after shift -> empty
 - Error handling for RSS feeds that don't exist, or dead links (Reuters pulled theirs, and weird errors started happening on my end)
-- Look into why http/too many requests is firing. Might need to jitter the rss requests. I reduced the number of feeds in the default conf for now. Also make error handling for that
+- Look into why http/too many requests is firing. Might need to jitter the rss requests. I reduced the number of feeds in the default conf for now. Also make error handling for that -> seems to just be reddit...
 - come up with CLI options => override config stuff
 - be able to handle more than 10 stock symbols, eventually
 - Add more details to README, to include the ahk stuff I added as a bonus to our Windows users out there <3
@@ -45,5 +45,4 @@ nuntium.rb:# TODO: invalidate cache frfr when they are old or mismatched...this 
 nuntium.rb:# TODO: this might be better off in util?
 nuntium.rb:# TODO: this might be better off in util?
 todo.bat:git grep -EIi "TODO|FIXME" >> TODO.txt
-util.rb:  ### TODO: Add more keyboard listeners -- one to pause the feed, one to follow
 util.rb:  ### TODO: this might make more sense as a Display::Cli method.

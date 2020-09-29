@@ -16,8 +16,7 @@
                 { "BBC World":  "http://feeds.bbci.co.uk/news/world/rss.xml" },
                 { "BBC US": "http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml" },
 				{ "Kotaku": "https://kotaku.com/rss" },
-                { "Game Informer": "https://www.gameinformer.com/rss.xml" },
-                { "Reddit: World News": "https://www.reddit.com/r/worldnews/.rss" }
+                { "Game Informer": "https://www.gameinformer.com/rss.xml" }
             ]
         },
         "stock": {
