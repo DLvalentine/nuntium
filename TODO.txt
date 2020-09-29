@@ -1,5 +1,4 @@
 --- GENERAL ---
-
 - Add keyboard listener to open aggregator in OS => rss to link, stock to google, file to file, etc.
 - Add speed controls (inc. pause?)
 - rein in the scope of this, update the repo docs to reflect it. Going to focus on CLI and GUI for now, and maybe come up with one more aggregator?
@@ -39,6 +38,7 @@ aggregator/stock.rb:    # TODO: simple file operations like this are a good cand
 aggregator/stock.rb:    ### TODO: candidate for pulling out into method on Aggregator
 aggregator/stock.rb:    ### TODO: candidate for optimization
 display/display.rb:  ## TODO: Only here to serve as an implementation reminder. Remove for prod.
+keyboard.rb:    ## FIXME : This is all a work in progress, and can/will be DRY-ed up, but I've noticed this only works on every other button press...
 nuntium.rb:# TODO: Add improved loading icon/thing while chunking data
 nuntium.rb:  ## TODO: make sure this thread gets killed...after you add in the frfr invalidation... include better loading text info?
 nuntium.rb:# TODO: invalidate cache frfr when they are old or mismatched...this is happening at the aggregator level right now

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../util.rb'
+
 require 'open-uri'
 require 'simple-rss'
 require 'htmlentities'
@@ -20,6 +22,9 @@ class Rss < Aggregator
     # local caching
     init_cache
     Util.poll(Rss::HOUR_IN_SECONDS) { init_cache }
+    Keyboard.listen_for_open_feed {
+      puts "something"
+    }
   end
 
   ## Get the rss info for the current feed,

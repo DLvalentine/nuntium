@@ -17,10 +17,11 @@ module Keyboard
 
     def self.listen_for_exit
         Keyboard.add_keyboard_shortcut('q') do
-            exit
+            exit!
         end
     end
 
+    ## FIXME : This is all a work in progress, and can/will be DRY-ed up, but I've noticed this only works on every other button press...
     def self.listen_for_open_feed
         Keyboard.add_keyboard_shortcut('o') do
             yield
