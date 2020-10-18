@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# TODO: figure out which one of these isn't needed here, move to keyboard.rb
 require 'io/console'
 require 'tty/reader'
 
