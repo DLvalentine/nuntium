@@ -5,6 +5,7 @@ require_relative '../util.rb'
 require 'open-uri'
 require 'simple-rss'
 require 'htmlentities'
+require 'launchy'
 
 ## Aggregator class for RSS Feeds, their content, etc.
 class Rss < Aggregator
@@ -18,22 +19,22 @@ class Rss < Aggregator
     @feeds = config['feeds']
     @current_feed = @feeds.first
     @current_feed_index = 0
+    @current_feed_link = ''
 
     # local caching
     init_cache
     Util.poll(Rss::HOUR_IN_SECONDS) { init_cache }
-    Keyboard.listen_for_open_feed {
-      puts "something"
-    }
+    Keyboard.add_shortcut('o') { Launchy.open(@current_feed_link) }
   end
 
   ## Get the rss info for the current feed,
   #  move on to the next one, and  give the output string.
   def read
-    title           = @current_feed.keys.first
+    title              = @current_feed.keys.first
     ## todo: shift probaly not the right thing... or if it is, need to rewrite cache...
-    content         = @cache[@current_feed.keys.first] || fetch_feed
-    decoded_content = HTMLEntities.new.decode(content&.shift&.dig('title'))
+    content            = @cache[@current_feed.keys.first] || fetch_feed
+    @current_feed_link = content[0]&.dig('link')
+    decoded_content    = HTMLEntities.new.decode(content&.shift&.dig('title'))
     @cache[@current_feed.keys.first] = nil if content.empty?
     next_feed
     "<#{title}>: #{decoded_content || Rss::NO_VALUE}"

@@ -3,46 +3,21 @@
 require_relative 'util.rb'
 
 ## Keyboard shortcut registration module
+# Super simple - hash that maps keybinds to a yield, so the implementing class passes a callback to it.
 module Keyboard
-    # Method to create new shortcuts
-    def self.add_keyboard_shortcut(key)
-        @reader = TTY::Reader.new
-        Util.poll(Cli::CLI_SPEED) do 
-            yield if @reader.read_char == key
-        end
-    end
+  @key_binds = {}
 
-    ## SHORTCUTS ##
-    # unless the logic is simple, we'll yield and require a class to implement the "callback"
-
-    def self.listen_for_exit
-        Keyboard.add_keyboard_shortcut('q') do
-            exit!
-        end
+  # Create a thread that listens for the keys
+  def self.listener
+    @reader = TTY::Reader.new
+    Util.poll(Cli::CLI_SPEED) do
+      key = @reader.read_char
+      @key_binds[key].call if @key_binds.key?(key)
     end
+  end
 
-    ## FIXME : This is all a work in progress, and can/will be DRY-ed up, but I've noticed this only works on every other button press...
-    def self.listen_for_open_feed
-        Keyboard.add_keyboard_shortcut('o') do
-            yield
-        end
-    end
-
-    def self.listen_for_increase_speed
-        Keyboard.add_keyboard_shortcut('.') do
-            yield
-        end
-    end
-
-    def self.listen_for_decrease_speed
-        Keyboard.add_keyboard_shortcut(',') do
-            yield
-        end
-    end
-
-    def self.listen_for_pause
-        Keyboard.add_keyboard_shortcut('p') do
-            yield
-        end
-    end
+  # Registers the keys
+  def self.add_shortcut(key)
+    @key_binds[key] = -> { yield }
+  end
 end

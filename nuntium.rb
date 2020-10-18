@@ -7,8 +7,7 @@ require_relative 'keyboard.rb'
 
 # TODO: Add improved loading icon/thing while chunking data
 def main
-  # Setup exit hook, clear term of old data
-  Keyboard.listen_for_exit
+  # Clear term of old data
   Util.clear_term
 
   ## TODO: make sure this thread gets killed...after you add in the frfr invalidation... include better loading text info?
@@ -19,8 +18,13 @@ def main
   sleep Cli::CLI_SPEED
   Util.clear_term
 
+  # Setup config, add exit hook, start listening for keys.
+  config = read_config
+  Keyboard.add_shortcut('q') { exit! }
+  Keyboard.listener
+
   # start streaming data
-  cli.display.stream(read_config)
+  cli.display.stream(config)
 end
 
 # TODO: invalidate cache frfr when they are old or mismatched...this is happening at the aggregator level right now
