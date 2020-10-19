@@ -8,7 +8,6 @@
 - add keyboard shortcuts to README
 
 --- BUGFIX / CRITICAL ---
-- Look into how you could create terminal hyperlinks so a user could click instead of `o` an rss feed
 - Figure a better way to display "loading" and message text, and any errors that come up during
 - Improve loading text based on cache/files, and also based on the aggregators that are enabled
 - Improve throttling issue with stocks, apply to rss feeds

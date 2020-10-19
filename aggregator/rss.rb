@@ -6,6 +6,7 @@ require 'open-uri'
 require 'simple-rss'
 require 'htmlentities'
 require 'launchy'
+require 'tty-link'
 
 ## Aggregator class for RSS Feeds, their content, etc.
 class Rss < Aggregator
@@ -37,7 +38,9 @@ class Rss < Aggregator
     decoded_content    = HTMLEntities.new.decode(content&.shift&.dig('title'))
     @cache[@current_feed.keys.first] = nil if content.empty?
     next_feed
-    "<#{title}>: #{decoded_content || Rss::NO_VALUE}"
+    content_without_link = "<#{title}>: #{decoded_content || Rss::NO_VALUE}"
+    content_with_link = TTY::Link.link_to(content_without_link, @current_feed_link || RSS::NO_VALUE)
+    content_with_link.include?('->') ? content_without_link : content_with_link
   end
 
   private
