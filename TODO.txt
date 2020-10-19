@@ -1,11 +1,10 @@
---- GENERAL ---
-- Update OPEN keyboard listener to open aggregator in OS => rss to link, stock to google, file to file, etc.
+--- GENERAL/EVENTUALLY ---
 - rein in the scope of this, update the repo docs to reflect it. Going to focus on CLI and GUI for now, and maybe come up with one more aggregator?
 - I want to come up with a way to... release this with a DB of rss feeds that exist? There doesn't seem to be a way to discover RSS feeds easily
 - Take a look at class structure again, make more use of inheritance where it makes sense. 
 - use super for inherited methods, duh
 - might make sense to add a JSON reader function to util.rb, and then make specific uses of it in the aggregator classes
-- come up with config template
+- come up with config template for 1.0
 - add keyboard shortcuts to README
 
 --- BUGFIX / CRITICAL ---
@@ -18,6 +17,7 @@
 - come up with CLI options => override config stuff
 - be able to handle more than 10 stock symbols, eventually
 - Add more details to README, to include the ahk stuff I added as a bonus to our Windows users out there <3
+- Update the RSS aggregator to refresh every 2 hours, tune this. Or, make it configurable
 
 
 --- AUTO GENERATED ---
