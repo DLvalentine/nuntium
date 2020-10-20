@@ -8,7 +8,6 @@ gem 'htmlentities'
 gem 'launchy'
 gem 'simple-rss'
 gem 'tty-reader'
-gem 'tty-link'
 
 # development
 gem 'pry'
