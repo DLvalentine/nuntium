@@ -15,8 +15,9 @@
                 { "Washington Post": "http://feeds.washingtonpost.com/rss/national?tid=lk_inline_manual_11" },
                 { "BBC World":  "http://feeds.bbci.co.uk/news/world/rss.xml" },
                 { "BBC US": "http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml" },
-				{ "Kotaku": "https://kotaku.com/rss" },
-                { "Game Informer": "https://www.gameinformer.com/rss.xml" }
+		{ "Kotaku": "https://kotaku.com/rss" },
+                { "Game Informer": "https://www.gameinformer.com/rss.xml" },
+		{ "CSS Tricks": "https://css-tricks.com/feed/" }
             ]
         },
         "stock": {
