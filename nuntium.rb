@@ -19,6 +19,7 @@ def main
   Util.clear_term
 
   # Setup config, add exit hook, start listening for keys.
+  # NOTE: read_config needs to run before Keyboard.listener, in case any Aggregators register shortcuts
   config = read_config
   Keyboard.add_shortcut('q') { exit! }
   Keyboard.listener
