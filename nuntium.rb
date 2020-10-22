@@ -39,8 +39,9 @@ end
 # TODO: this might be better off in util?
 def read_config
   stream_format = JSON.parse(File.read('./config.json'))['displays']['stream_format']
-  disk = stream_format.include?('disk') ? Aggregator.new('disk') : nil
-  rss = stream_format.include?('rss') ? Aggregator.new('rss') : nil
+  
+  disk  = stream_format.include?('disk') ? Aggregator.new('disk') : nil
+  rss   = stream_format.include?('rss') ? Aggregator.new('rss') : nil
   stock = stream_format.include?('stock') ? Aggregator.new('stock') : nil
 
   stream_format.map do |frmt|
