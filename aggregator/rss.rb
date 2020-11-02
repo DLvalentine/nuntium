@@ -25,6 +25,7 @@ class Rss < Aggregator
     init_cache
     Util.poll(Rss::HOUR_IN_SECONDS) { init_cache }
     Keyboard.add_shortcut('o') { Launchy.open(@current_feed_link) }
+    Keyboard.add_shortcut(' ') { Launchy.open(@current_feed_link) }
   end
 
   ## Get the rss info for the current feed,
