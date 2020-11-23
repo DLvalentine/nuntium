@@ -7,6 +7,7 @@
 - come up with config template for 1.0
 - add keyboard shortcuts to README
 - create gem for this, for "installer"
+- Integrate RssHub => https://github.com/DIYgod/RSSHub
 
 --- BUGFIX / CRITICAL ---
 - Figure a better way to display "loading" and message text, and any errors that come up during
