@@ -9,6 +9,7 @@
 - create gem for this, for "installer"
 - Basic RSSHub integration is done, need to support Mac/linux, update docs, and write install script for this whole package
 - ^ similarly, should probably get some mac-compatible dev scripts
+- ^^ similarly, would be nice to write code that shuts down RSSHub instance on 'q' => quit. Won't work on ctrl-c though.
 
 --- BUGFIX / CRITICAL ---
 - Figure a better way to display "loading" and message text, and any errors that come up during
