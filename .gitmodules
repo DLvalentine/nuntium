@@ -1,0 +1,3 @@
+[submodule "RSSHub"]
+	path = RSSHub
+	url = https://github.com/dlvalentine/RSSHub
