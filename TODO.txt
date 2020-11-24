@@ -7,7 +7,7 @@
 - come up with config template for 1.0
 - add keyboard shortcuts to README
 - create gem for this, for "installer"
-- Basic RSSHub integration is done, need to support Mac/linux, update docs, and write install script for this whole package
+- Basic RSSHub integration is done, need to support Mac/linux, update docs, and write install script for this whole package - to include... Ruby, Node.. everything.
 - ^ similarly, should probably get some mac-compatible dev scripts
 - ^^ similarly, would be nice to write code that shuts down RSSHub instance on 'q' => quit. Won't work on ctrl-c though.
 
