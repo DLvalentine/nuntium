@@ -9,6 +9,10 @@ gem 'launchy'
 gem 'simple-rss'
 gem 'tty-reader'
 
+# required and coupled
+gem 'net-ping'
+gem 'win32-security'
+
 # development
 gem 'pry'
 gem 'rubocop'

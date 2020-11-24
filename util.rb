@@ -2,6 +2,7 @@
 
 # TODO: figure out which one of these isn't needed here, move to keyboard.rb
 require 'io/console'
+require 'net/ping'
 require 'tty/reader'
 
 ## Utility methods, shared between all classes
@@ -32,5 +33,9 @@ module Util
       sleep Cli::CLI_SPEED
       system('clear') ? nil : system('cls')
     end
+  end
+
+  def self.local_rsshub_online?
+    Net::Ping::TCP.new('localhost', 1200, 3).ping?
   end
 end

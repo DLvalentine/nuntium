@@ -2,10 +2,10 @@
 
 require_relative '../util.rb'
 
-require 'open-uri'
-require 'simple-rss'
 require 'htmlentities'
 require 'launchy'
+require 'open-uri'
+require 'simple-rss'
 
 ## Aggregator class for RSS Feeds, their content, etc.
 class Rss < Aggregator
@@ -17,6 +17,8 @@ class Rss < Aggregator
 
   def initialize(config)
     @feeds = config['feeds']
+    append_ifeeds(config['i_feeds'])
+    
     @current_feed = @feeds.first
     @current_feed_index = 0
     @current_feed_link = ''
@@ -42,6 +44,11 @@ class Rss < Aggregator
   end
 
   private
+
+  # Ping the internal RSSHub instance - if it is online, append those feeds.
+  def append_ifeeds(i_feeds)
+    @feeds.concat(i_feeds) if Util.local_rsshub_online?
+  end
 
   # Hit the feed for each feed URI at instantiation instead of
   # at runtime, then write to file.

@@ -7,7 +7,7 @@
             ]
         },
         "rss": {
-            "_NOTE": "feeds is an array of objects where the key is presentational, and the value is the rss URL",
+            "_NOTE": "feeds is an array of objects where the key is presentational, and the value is the rss URL. i_feeds is a list of internal feeds, powered by an internal RSSHub instance.",
             "feeds": [
                 { "Hacker News": "https://news.ycombinator.com/rss" },
                 { "Ars Technica": "http://feeds.arstechnica.com/arstechnica/index" },
@@ -19,10 +19,13 @@
                 { "Game Informer": "https://www.gameinformer.com/rss.xml" },
                 { "CSS Tricks": "https://css-tricks.com/feed/" },
                 { "Aeon": "https://aeon.co/feed.rss" }
+            ],
+            "i_feeds": [
+                { "Reuters World": "http://localhost:1200/reuters/channel/us/world" }
             ]
         },
         "stock": {
-            "_NOTE": "This feature only supports up to 10 stock symbols right now, sorry. But symbols is an array of strings that are stock symbols",
+            "_NOTE": "This feature only supports up to 10 stock symbols right now, sorry. But symbols is an array of strings that are stock symbols - it is a WIP",
             "symbols": [
                 "AMZN",
                 "AAPL", 

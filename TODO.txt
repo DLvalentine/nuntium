@@ -7,7 +7,8 @@
 - come up with config template for 1.0
 - add keyboard shortcuts to README
 - create gem for this, for "installer"
-- Integrate RssHub => https://github.com/DIYgod/RSSHub
+- Basic RSSHub integration is done, need to support Mac/linux, update docs, and write install script for this whole package
+- ^ similarly, should probably get some mac-compatible dev scripts
 
 --- BUGFIX / CRITICAL ---
 - Figure a better way to display "loading" and message text, and any errors that come up during
@@ -24,7 +25,6 @@
 
 --- AUTO GENERATED ---
 .rubocop.yml:# TODO: Find/improve trouble spots, if possible
-TODO.txt:.rubocop.yml:# TODO: Find/improve trouble spots, if possible
 aggregator/aggregator.rb:  ## TODO: actually this will be useful, I just need to implement it correctly.
 aggregator/aggregator.rb:  ## TODO: Only here to serve as an implementation reminder. Remove for prod.
 aggregator/disk.rb:  # TODO: make a file directory attr in config.json, since
@@ -42,10 +42,12 @@ aggregator/stock.rb:    ### TODO: candidate for pulling out into method on Aggre
 aggregator/stock.rb:    ### TODO: candidate for optimization
 display/display.rb:  ## TODO: Only here to serve as an implementation reminder. Remove for prod.
 nuntium.rb:# TODO: Add improved loading icon/thing while chunking data
-nuntium.rb:  ## TODO: make sure this thread gets killed...after you add in the frfr invalidation... include better loading text info?
+nuntium.rb:  # TODO: make sure this thread gets killed...after you add in the frfr invalidation... include better loading text info?
 nuntium.rb:# TODO: invalidate cache frfr when they are old or mismatched...this is happening at the aggregator level right now
 nuntium.rb:# TODO: this might be better off in util?
 nuntium.rb:# TODO: this might be better off in util?
+nuntium.rb:    # TODO: make sure this thread gets killed... include better loading text info?
+nuntium.rb:      # TODO - Mac compatibility...
 todo.bat:git grep -EIi "TODO|FIXME" >> TODO.txt
 util.rb:# TODO: figure out which one of these isn't needed here, move to keyboard.rb
 util.rb:  ### TODO: this might make more sense as a Display::Cli method.

@@ -10,7 +10,7 @@ def main
   # Clear term of old data
   Util.clear_term
 
-  ## TODO: make sure this thread gets killed...after you add in the frfr invalidation... include better loading text info?
+  # TODO: make sure this thread gets killed...after you add in the frfr invalidation... include better loading text info?
   Util.poll(Cli::CLI_SPEED) { print "\rLoading data..." unless caches_valid? }
 
   # Set up cli display
@@ -39,6 +39,18 @@ end
 # TODO: this might be better off in util?
 def read_config
   stream_format = JSON.parse(File.read('./config.json'))['displays']['stream_format']
+  enable_rsshub = JSON.parse(File.read('./config.json'))['aggregators']['rss']['i_feeds'].length > 0
+
+  # If rsshub is enabled (i_feeds has at least one entry), spin up the service locally
+  if enable_rsshub 
+    # TODO: make sure this thread gets killed... include better loading text info?
+    Util.poll(Cli::CLI_SPEED) { print "\rStarting RSSHub..." unless Util.local_rsshub_online? }
+    Thread.new do 
+      # TODO - Mac compatibility...
+      system('start /min rsshub.bat') unless Util.local_rsshub_online?
+    end
+    sleep 1 until Util.local_rsshub_online?
+  end
   
   disk  = stream_format.include?('disk') ? Aggregator.new('disk') : nil
   rss   = stream_format.include?('rss') ? Aggregator.new('rss') : nil
