@@ -17,12 +17,12 @@ class Cli < Display
     Keyboard.add_shortcut(',') { @cli_speed_offset += 0.01 }
     Keyboard.add_shortcut('.') { (Cli::CLI_SPEED + @cli_speed_offset - 0.01).positive? ? @cli_speed_offset -= 0.01 : nil }
     Keyboard.add_shortcut('/') { @cli_speed_offset = 0 }
-    Keyboard.add_shortcut('p') { 
+    Keyboard.add_shortcut('p') do
       offset_before_pause = @cli_speed_offset
       @cli_speed_offset = Cli::PAUSE_TIME_SECS
       sleep 0.1
       @cli_speed_offset = offset_before_pause # after the short pause, return to the old speed
-    }
+    end
     Util.poll(Cli::CLI_SPEED) { @width = term_width }
   end
 

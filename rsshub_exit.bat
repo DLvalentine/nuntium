@@ -1,0 +1,1 @@
+taskkill /F /IM node.exe >nul 2>&1 && taskkill /F /FI "WindowTitle eq RSSHUB*" >nul 2>&1 && exit

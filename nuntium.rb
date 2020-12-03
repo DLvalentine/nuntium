@@ -21,7 +21,11 @@ def main
   # Setup config, add exit hook, start listening for keys.
   # NOTE: read_config needs to run before Keyboard.listener, in case any Aggregators register shortcuts
   config = read_config
-  Keyboard.add_shortcut('q') { exit! }
+  # TODO: Mac compat - basically a ruby script I guess... or fallback scripts
+  Keyboard.add_shortcut('q') do
+    system('start /min rsshub_exit.bat')
+    exit!
+  end
   Keyboard.listener
 
   # start streaming data
@@ -39,19 +43,20 @@ end
 # TODO: this might be better off in util?
 def read_config
   stream_format = JSON.parse(File.read('./config.json'))['displays']['stream_format']
-  enable_rsshub = JSON.parse(File.read('./config.json'))['aggregators']['rss']['i_feeds'].length > 0
+  enable_rsshub = !JSON.parse(File.read('./config.json'))['aggregators']['rss']['i_feeds'].empty?
 
   # If rsshub is enabled (i_feeds has at least one entry), spin up the service locally
-  if enable_rsshub 
+  if enable_rsshub
     # TODO: make sure this thread gets killed... include better loading text info?
     Util.poll(Cli::CLI_SPEED) { print "\rStarting RSSHub..." unless Util.local_rsshub_online? }
-    Thread.new do 
-      # TODO - Mac compatibility...
-      system('start /min rsshub.bat') unless Util.local_rsshub_online?
+    Thread.new do
+      # TODO: - Mac compatibility...
+      system('start "RSSHUB" /min rsshub.bat') unless Util.local_rsshub_online?
     end
     sleep 1 until Util.local_rsshub_online?
+    Util.clear_term
   end
-  
+
   disk  = stream_format.include?('disk') ? Aggregator.new('disk') : nil
   rss   = stream_format.include?('rss') ? Aggregator.new('rss') : nil
   stock = stream_format.include?('stock') ? Aggregator.new('stock') : nil

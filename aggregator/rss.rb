@@ -11,21 +11,24 @@ require 'simple-rss'
 class Rss < Aggregator
   attr_reader :current_feed
 
-  HOUR_IN_SECONDS = 3_600
-  CACHE_FILENAME  = 'rss_cache.json'
-  NO_VALUE        = 'N/A'
+  RSS_REFRESH_TIME_SECONDS = 7_200
+  CACHE_FILENAME           = 'rss_cache.json'
+  NO_VALUE                 = 'N/A'
 
   def initialize(config)
     @feeds = config['feeds']
     append_ifeeds(config['i_feeds'])
-    
+
     @current_feed = @feeds.first
     @current_feed_index = 0
     @current_feed_link = ''
 
     # local caching
     init_cache
-    Util.poll(Rss::HOUR_IN_SECONDS) { init_cache }
+    Util.poll(Rss::RSS_REFRESH_TIME_SECONDS) do
+      init_cache
+      Util.clear_term # TODO: did this work? When the feed refreshes, we get some weird line clearing stuff... Started happening after RSSHub integ
+    end
     Keyboard.add_shortcut('o') { Launchy.open(@current_feed_link) }
     Keyboard.add_shortcut(' ') { Launchy.open(@current_feed_link) }
   end
@@ -71,15 +74,15 @@ class Rss < Aggregator
     # Attempt to read from file first
     # (over)write file if it doesn't exist, or is 1h+ old.
     if File.exist?(Rss::CACHE_FILENAME)
-      hour_ago  = (Time.now - Rss::HOUR_IN_SECONDS).to_i
-      next_hour = (Time.now + Rss::HOUR_IN_SECONDS).to_i
-      file_ctime = File.mtime(Rss::CACHE_FILENAME).to_time.to_i
+      last_refresh = (Time.now - Rss::RSS_REFRESH_TIME_SECONDS).to_i
+      next_refresh = (Time.now + Rss::RSS_REFRESH_TIME_SECONDS).to_i
+      file_ctime   = File.mtime(Rss::CACHE_FILENAME).to_time.to_i
 
       cache_from_file = JSON.parse(File.read(Rss::CACHE_FILENAME))
 
       mismatched_keys = (cache_from_file.length != @feeds.length ||
                         cache_from_file.keys != @feeds.map(&:keys).flatten)
-      old_cache = !(file_ctime > hour_ago && file_ctime < next_hour)
+      old_cache = !(file_ctime > last_refresh && file_ctime < next_refresh)
 
       if old_cache || mismatched_keys
         File.delete(Rss::CACHE_FILENAME)

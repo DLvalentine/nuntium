@@ -54,3 +54,4 @@ build-iPhoneSimulator/
 # application specific
 stock_cache.json
 rss_cache.json
+debug.log

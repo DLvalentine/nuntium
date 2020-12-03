@@ -9,7 +9,6 @@
 - create gem for this, for "installer"
 - Basic RSSHub integration is done, need to support Mac/linux, update docs, and write install script for this whole package - to include... Ruby, Node.. everything.
 - ^ similarly, should probably get some mac-compatible dev scripts
-- ^^ similarly, would be nice to write code that shuts down RSSHub instance on 'q' => quit. Won't work on ctrl-c though.
 
 --- BUGFIX / CRITICAL ---
 - Figure a better way to display "loading" and message text, and any errors that come up during
@@ -30,6 +29,7 @@ aggregator/aggregator.rb:  ## TODO: actually this will be useful, I just need to
 aggregator/aggregator.rb:  ## TODO: Only here to serve as an implementation reminder. Remove for prod.
 aggregator/disk.rb:  # TODO: make a file directory attr in config.json, since
 aggregator/disk.rb:  #  TODO: an optimization would be to check the size first, and skip
+aggregator/rss.rb:      Util.clear_term # TODO: did this work? When the feed refreshes, we get some weird line clearing stuff... Started happening after RSSHub integ
 aggregator/rss.rb:    ## todo: shift probaly not the right thing... or if it is, need to rewrite cache...
 aggregator/rss.rb:  ### TODO: probably candidate for pulling out into method on Aggregator
 aggregator/stock.rb:        if symbol_length > 5 && index > 4 # TODO: Handle this in batches, so we can support more than 10 symbols, staggered
@@ -44,6 +44,7 @@ aggregator/stock.rb:    ### TODO: candidate for optimization
 display/display.rb:  ## TODO: Only here to serve as an implementation reminder. Remove for prod.
 nuntium.rb:# TODO: Add improved loading icon/thing while chunking data
 nuntium.rb:  # TODO: make sure this thread gets killed...after you add in the frfr invalidation... include better loading text info?
+nuntium.rb:  # TODO: Mac compat - basically a ruby script I guess... or fallback scripts
 nuntium.rb:# TODO: invalidate cache frfr when they are old or mismatched...this is happening at the aggregator level right now
 nuntium.rb:# TODO: this might be better off in util?
 nuntium.rb:# TODO: this might be better off in util?
