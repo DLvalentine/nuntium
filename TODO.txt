@@ -1,5 +1,6 @@
 --- GENERAL/EVENTUALLY ---
 - rein in the scope of this, update the repo docs to reflect it. Going to focus on CLI and GUI for now, and maybe come up with one more aggregator?
+    - The GUI for this could be simple - just a Rails app with auto, infinite scroll down the page? With options for pause and speed increase/decrease
 - I want to come up with a way to... release this with a DB of rss feeds that exist? There doesn't seem to be a way to discover RSS feeds easily
 - Take a look at class structure again, make more use of inheritance where it makes sense. 
 - use super for inherited methods, duh
