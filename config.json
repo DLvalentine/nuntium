@@ -19,10 +19,10 @@
 		        { "Kotaku": "https://kotaku.com/rss" },
                 { "Game Informer": "https://www.gameinformer.com/rss.xml" },
                 { "CSS Tricks": "https://css-tricks.com/feed/" },
-                { "Aeon": "https://aeon.co/feed.rss" }
+                { "Aeon": "https://aeon.co/feed.rss" },
+                { "Polygon": "https://www.polygon.com/rss/index.xml" }
             ],
             "i_feeds": [
-                { "Reuters World": "http://localhost:1200/reuters/channel/us/world" }
             ]
         },
         "stock": {
