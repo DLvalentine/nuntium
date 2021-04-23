@@ -20,10 +20,13 @@ def main
 
   # Setup config, add exit hook, start listening for keys.
   # NOTE: read_config needs to run before Keyboard.listener, in case any Aggregators register shortcuts
+  @enable_rsshub = false
   config = read_config
   # TODO: Mac compat - basically a ruby script I guess... or fallback scripts
   Keyboard.add_shortcut('q') do
-    system('start /min rsshub_exit.bat')
+    if @enable_rsshub
+      system('start /min rsshub_exit.bat')
+    end
     exit!
   end
   Keyboard.listener
@@ -43,10 +46,10 @@ end
 # TODO: this might be better off in util?
 def read_config
   stream_format = JSON.parse(File.read('./config.json'))['displays']['stream_format']
-  enable_rsshub = !JSON.parse(File.read('./config.json'))['aggregators']['rss']['i_feeds'].empty?
+  @enable_rsshub = !JSON.parse(File.read('./config.json'))['aggregators']['rss']['i_feeds'].empty?
 
   # If rsshub is enabled (i_feeds has at least one entry), spin up the service locally
-  if enable_rsshub
+  if @enable_rsshub
     # TODO: make sure this thread gets killed... include better loading text info?
     Util.poll(Cli::CLI_SPEED) { print "\rStarting RSSHub..." unless Util.local_rsshub_online? }
     Thread.new do

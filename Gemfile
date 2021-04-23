@@ -8,6 +8,7 @@ gem 'htmlentities'
 gem 'launchy'
 gem 'simple-rss'
 gem 'tty-reader'
+gem 'httparty'
 
 # required and coupled
 gem 'net-ping'

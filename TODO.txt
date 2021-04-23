@@ -22,7 +22,8 @@
 - be able to handle more than 10 stock symbols, eventually
 - Add more details to README, to include the ahk stuff I added as a bonus to our Windows users out there <3
 - Update the RSS aggregator to refresh every 2 hours, tune this. Or, make it configurable
-
+- There's a weird bug where after refreshing, the app breaks on newlines a bunch. Dunno why
+- Finish Wallabag integration at some point - right now just using chrome extension
 
 --- AUTO GENERATED ---
 .rubocop.yml:# TODO: Find/improve trouble spots, if possible
