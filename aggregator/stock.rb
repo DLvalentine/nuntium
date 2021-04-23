@@ -26,6 +26,7 @@ class Stock < Aggregator
 
     # Not really concerned about this. If it dies, so does this feature until I come up
     # with a better way to grab stocks. This is just a side-project, anyway :)
+    # TODO: generate a new key, pivot to using gh secrets now that those are a thing. Need to figure a workflow for that...
     @api = 'W4JK4YBUEQTP6PIZ'
 
     # local caching

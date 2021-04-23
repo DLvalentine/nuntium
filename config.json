@@ -16,11 +16,12 @@
                 { "Washington Post": "http://feeds.washingtonpost.com/rss/national?tid=lk_inline_manual_11" },
                 { "BBC World":  "http://feeds.bbci.co.uk/news/world/rss.xml" },
                 { "BBC US": "http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml" },
-		        { "Kotaku": "https://kotaku.com/rss" },
+		{ "Kotaku": "https://kotaku.com/rss" },
                 { "Game Informer": "https://www.gameinformer.com/rss.xml" },
                 { "CSS Tricks": "https://css-tricks.com/feed/" },
                 { "Aeon": "https://aeon.co/feed.rss" },
-                { "Polygon": "https://www.polygon.com/rss/index.xml" }
+                { "Polygon": "https://www.polygon.com/rss/index.xml" },
+   		{ "Hipsters of the Coast": "https://www.hipstersofthecoast.com/feed/" }
             ],
             "i_feeds": [
             ]
