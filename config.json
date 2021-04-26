@@ -20,8 +20,7 @@
                 { "Game Informer": "https://www.gameinformer.com/rss.xml" },
                 { "CSS Tricks": "https://css-tricks.com/feed/" },
                 { "Aeon": "https://aeon.co/feed.rss" },
-                { "Polygon": "https://www.polygon.com/rss/index.xml" },
-                { "Tending on GitHub": "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml" }
+                { "Polygon": "https://www.polygon.com/rss/index.xml" }
             ],
             "i_feeds": [
             ]

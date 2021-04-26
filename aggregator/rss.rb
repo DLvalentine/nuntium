@@ -43,14 +43,21 @@ class Rss < Aggregator
   ## Get the rss info for the current feed,
   #  move on to the next one, and  give the output string.
   def read
-    title              = @current_feed.keys.first
-    ## todo: shift probaly not the right thing... or if it is, need to rewrite cache...
-    content            = @cache[@current_feed.keys.first] || fetch_feed
-    @current_feed_link = content[0]&.dig('link')
-    decoded_content    = HTMLEntities.new.decode(content&.shift&.dig('title'))
-    @cache[@current_feed.keys.first] = nil if content.empty?
-    next_feed
-    "<#{title}>: #{decoded_content || Rss::NO_VALUE}"
+    begin
+      title              = @current_feed.keys.first
+      ## todo: shift probaly not the right thing... or if it is, need to rewrite cache...
+      content            = @cache[@current_feed.keys.first] || fetch_feed
+      @current_feed_link = content[0]&.dig('link')
+      decoded_content    = HTMLEntities.new.decode(content&.shift&.dig('title'))
+      @cache[@current_feed.keys.first] = nil if content.empty?
+      next_feed
+      "<#{title}>: #{decoded_content || Rss::NO_VALUE}"
+    rescue => e
+      # Error while parsing, something weird during feed fetch, not read, probably
+      # TODO: Build a better handler for this, skip feed? drop feed? For now, don't recover, throw error.
+      puts e
+      exit!
+    end
   end
 
   private
@@ -113,8 +120,10 @@ class Rss < Aggregator
     # rubocop:disable Security/Open
     begin
       document = SimpleRSS.parse(open(endpoint))
-    rescue Errno::ENOENT
-      document = [{ title: Rss::NO_VALUE }]
+    rescue => e
+      puts "Error: <#{e}> while trying to call <#{@current_feed_link}>"
+      # effectively skip document
+      document = [{ title: Rss::NO_VALUE, items: {} }]
     end
     # rubocop:enable Security/Open
 
