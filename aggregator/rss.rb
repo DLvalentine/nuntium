@@ -123,7 +123,7 @@ class Rss < Aggregator
     rescue => e
       puts "Error: <#{e}> while trying to call <#{@current_feed_link}>"
       # effectively skip document
-      document = [{ title: Rss::NO_VALUE, items: {} }]
+      document = { title: Rss::NO_VALUE, items: {} }
     end
     # rubocop:enable Security/Open
 
