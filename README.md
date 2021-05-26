@@ -10,3 +10,5 @@ RSSHub update - This project's RSS feed aggregator (arguably the "core" part of 
 The internal RSSHub is easy to use - I need to add more docs, but you just need to `cd` into RSSHub, run `npm install` before using it in your config. From there, `config.json` in root can be updated to point to RSSHub feeds. Another note is  that all `localhost`/RSSHub feeds need to be hit with `http`. Another note is that this instance uses port `1200`. If Nuntium picks up a RSSHub feed in `config.json` it will attempt to start up the RSSHub instance.
 
 Now that RSSHub is integrated, this repo needs to be cloned with `--recursive` to include the submodule.
+
+NOTE: Could consider using something like [https://www.romanzolotarev.com/rssg.html](this) to replace RSSHub...
