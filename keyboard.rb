@@ -8,7 +8,7 @@ module Keyboard
   @key_binds = {}
 
   # Create a thread that listens for the keys
-  def self.listener
+  def self.enable_listener
     @reader = TTY::Reader.new
     Util.poll(Cli::CLI_SPEED) do
       key = @reader.read_char

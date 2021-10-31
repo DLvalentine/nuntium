@@ -35,7 +35,7 @@ def main
     Util.clear_term
   end
   
-  Keyboard.listener
+  Keyboard.enable_listener
 
   # start streaming data
   Util.clear_term

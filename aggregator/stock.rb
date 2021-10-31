@@ -107,10 +107,7 @@ class Stock < Aggregator
     endpoint = 'https://www.alphavantage.co/'
     query = "query?function=GLOBAL_QUOTE&symbol=#{@current_symbol}&apikey=#{@api}"
 
-    # Not using Kernel#Open, Rubocop is dumb
-    # rubocop:disable Security/Open
-    resp = JSON.parse(open("#{endpoint}#{query}").read)['Global Quote']
-    # rubocop:enable Security/Open
+    resp = JSON.parse(URI.open("#{endpoint}#{query}").read)['Global Quote']
 
     if resp.nil?
       @value = Stock::NO_VALUE
@@ -150,11 +147,7 @@ class Stock < Aggregator
     query = "query?function=GLOBAL_QUOTE&symbol=#{missing_symbol}&apikey=#{@api}"
 
     #### TODO: Break this out into a new function, since #quote uses it, too. Not doing it now for the sake of time.
-
-    # Not using Kernel#Open, Rubocop is dumb
-    # rubocop:disable Security/Open
-    resp = JSON.parse(open("#{endpoint}#{query}").read)['Global Quote']
-    # rubocop:enable Security/Open
+    resp = JSON.parse(URI.open("#{endpoint}#{query}").read)['Global Quote']
 
     if resp.nil?
       @value = Stock::NO_VALUE

@@ -116,16 +116,13 @@ class Rss < Aggregator
   def fetch_feed
     endpoint = @current_feed.values.first
 
-    # Not using Kernel#Open, Rubocop is dumb
-    # rubocop:disable Security/Open
     begin
-      document = SimpleRSS.parse(open(endpoint))
+      document = SimpleRSS.parse(URI.open(endpoint))
     rescue => e
       puts "Error: <#{e}> while trying to call <#{@current_feed_link}>"
       # effectively skip document
       document = { title: Rss::NO_VALUE, items: {} }
     end
-    # rubocop:enable Security/Open
 
     # Ensuring string access instead of symbol access.
     # I know there's probably a better way to do this...
