@@ -15,13 +15,7 @@ class Rss < Aggregator
   RSS_REFRESH_TIME_SECONDS   = 7_200
   CACHE_FILENAME             = 'rss_cache.json'
   NO_VALUE                   = 'N/A'
-  WCID                       = '3_1wh9mo5a00lc08c4000g4k88sk8gw4w0o8gcs0w0cgw0c8o0cg';
-  WSCT                       = '1altysnzjt40ggs4s48w408o0o4wgk4k0gs0w84ocgwk8cocs0';
-  WALLABAG_HOST              = 'http://localhost'
-  WALLABAG_BOOKMARK_ENDPOINT = "#{WALLABAG_HOST}/api/entries"
-  WALLABAG_AUTH_ENDPOINT     = "#{WALLABAG_HOST}/oauth/v2/token"
   
-
   def initialize(config)
     @feeds = config['feeds']
     append_ifeeds(config['i_feeds'])

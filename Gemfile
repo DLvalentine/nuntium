@@ -9,6 +9,7 @@ gem 'launchy'
 gem 'simple-rss'
 gem 'tty-reader'
 gem 'httparty'
+gem 'os'
 
 # required and coupled
 gem 'net-ping'

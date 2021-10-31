@@ -4,6 +4,7 @@
 require 'io/console'
 require 'net/ping'
 require 'tty/reader'
+require 'os'
 
 ## Utility methods, shared between all classes
 module Util
@@ -31,7 +32,7 @@ module Util
   def self.clear_term
     Thread.new do
       sleep Cli::CLI_SPEED
-      system('clear') ? nil : system('cls')
+      OS.windows? ? system('cls') : system('clear')
     end
   end
 

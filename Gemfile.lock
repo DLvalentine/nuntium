@@ -21,6 +21,7 @@ GEM
     mime-types-data (3.2021.0901)
     multi_xml (0.6.0)
     net-ping (2.0.8)
+    os (1.1.1)
     parallel (1.21.0)
     parser (3.0.2.0)
       ast (~> 2.4.1)
@@ -65,6 +66,7 @@ DEPENDENCIES
   httparty
   launchy
   net-ping
+  os
   pry
   rubocop
   simple-rss
