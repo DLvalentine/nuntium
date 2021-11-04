@@ -10,19 +10,18 @@
 - create gem for this, for "installer"
 - Basic RSSHub integration is done, need to support Mac/linux, update docs, and write install script for this whole package - to include... Ruby, Node.. everything.
 - ^ similarly, should probably get some mac-compatible dev scripts
+- Move all the OS specific junk into their own directories
 
 --- BUGFIX / CRITICAL ---
-- Figure a better way to display "loading" and message text, and any errors that come up during
+- Figure a better way to display CLI error messages
 - Improve loading text based on cache/files, and also based on the aggregators that are enabled
 - Improve throttling issue with stocks, apply to rss feeds
 - ensure stock/rss refresh in background! after shift -> empty
 - Error handling for RSS feeds that don't exist, or dead links (Reuters pulled theirs, and weird errors started happening on my end)
-- Look into why http/too many requests is firing. Might need to jitter the rss requests. I reduced the number of feeds in the default conf for now. Also make error handling for that -> seems to just be reddit...
 - come up with CLI options => override config stuff
-- be able to handle more than 10 stock symbols, eventually
+- be able to handle more than 10 stock symbols, eventually - right now we just offload it, wait for the rate limiter, then call again
 - Add more details to README, to include the ahk stuff I added as a bonus to our Windows users out there <3
 - Update the RSS aggregator to refresh every 2 hours, tune this. Or, make it configurable
-- There's a weird bug where after refreshing, the app breaks on newlines a bunch. Dunno why
 
 --- AUTO GENERATED ---
 .rubocop.yml:# TODO: Find/improve trouble spots, if possible
@@ -46,7 +45,7 @@ aggregator/stock.rb:    ### TODO: candidate for pulling out into method on Aggre
 aggregator/stock.rb:    ### TODO: candidate for optimization
 display/display.rb:  ## TODO: Only here to serve as an implementation reminder. Remove for prod.
 nuntium.rb:# TODO: Add improved loading icon/thing while chunking data
-nuntium.rb:  # TODO: make sure this thread gets killed...after you add in the frfr invalidation... include better loading text info?
+nuntium.rb:  # TODO: make sure this thread gets killed...after you add in the frfr invalidation...
 nuntium.rb:  # TODO: Mac compat - basically a ruby script I guess... or fallback scripts
 nuntium.rb:# TODO: invalidate cache frfr when they are old or mismatched...this is happening at the aggregator level right now
 nuntium.rb:# TODO: this might be better off in util?

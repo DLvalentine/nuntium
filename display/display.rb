@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 ## Parent class for the display/ticking, as it were
+# TODO / NOTE: This was an attempt many years ago by me to play around with inheritence/polymorphism in Ruby... it did not go as planned.
+#               as such, this... is kinda just like a factory now, for pumping out classes. Kinda metaprogramming except not.
+#               It works, so I'm probably not going to change it, but it is over-engineered for what it does. Maybe I will change it idk.
 class Display
   require_relative 'cli.rb'
 

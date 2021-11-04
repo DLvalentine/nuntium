@@ -10,8 +10,9 @@ def main
   # Clear term of old data
   Util.clear_term
 
-  # TODO: make sure this thread gets killed...after you add in the frfr invalidation... include better loading text info?
-  Util.poll(Cli::CLI_SPEED) { print "\rLoading data..." unless caches_valid? }
+  # TODO: make sure this thread gets killed...after you add in the frfr invalidation...
+  @chunk = "RSS data"
+  Util.poll(Cli::CLI_SPEED) { print "\rLoading #{@chunk}..." unless caches_valid? }
   Util.poll(30) { Util.clear_term }
 
   # Set up cli display
@@ -45,7 +46,12 @@ end
 # TODO: invalidate cache frfr when they are old or mismatched...this is happening at the aggregator level right now
 # TODO: this might be better off in util?
 def caches_valid?
-  File.exist?(Rss::CACHE_FILENAME) && File.exist?(Stock::CACHE_FILENAME)
+  rss_feeds_exist = File.exist?(Rss::CACHE_FILENAME)
+  stock_feeds_exists = File.exist?(Stock::CACHE_FILENAME)
+
+  @chunk = rss_feeds_exist ? "Stock Symbol data" : "RSS data"
+
+  rss_feeds_exist && stock_feeds_exists
 end
 
 # reads the config.json file at the root, and constructs the aggregator array
