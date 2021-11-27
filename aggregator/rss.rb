@@ -12,7 +12,7 @@ require 'httparty'
 class Rss < Aggregator
   attr_reader :current_feed
 
-  RSS_REFRESH_TIME_SECONDS   = 7_200
+  RSS_REFRESH_TIME_SECONDS   = 7_200 # two hours
   CACHE_FILENAME             = 'rss_cache.json'
   NO_VALUE                   = 'N/A'
   
@@ -28,7 +28,6 @@ class Rss < Aggregator
     init_cache
     Util.poll(Rss::RSS_REFRESH_TIME_SECONDS) do
       init_cache
-      Util.clear_term # TODO: did this work? When the feed refreshes, we get some weird line clearing stuff... Started happening after RSSHub integ
     end
     Keyboard.add_shortcut('o') { Launchy.open(@current_feed_link) }
     Keyboard.add_shortcut(' ') { Launchy.open(@current_feed_link) }

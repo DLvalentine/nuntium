@@ -12,7 +12,7 @@ def main
 
   # TODO: make sure this thread gets killed...after you add in the frfr invalidation...
   @chunk = "RSS data"
-  Util.poll(Cli::CLI_SPEED) { print "\rLoading #{@chunk}..." unless caches_valid? }
+  @loading_thread = Util.poll(Cli::CLI_SPEED) { print "\rLoading #{@chunk}..." unless caches_valid? }
   Util.poll(30) { Util.clear_term }
 
   # Set up cli display
@@ -39,8 +39,9 @@ def main
   Keyboard.enable_listener
 
   # start streaming data
+  @loading_thread.kill() if caches_valid?
   Util.clear_term
-  cli.display.stream(config)
+  cli.display.stream(config) if caches_valid?
 end
 
 # TODO: invalidate cache frfr when they are old or mismatched...this is happening at the aggregator level right now
