@@ -9,9 +9,6 @@
         "rss": {
             "_NOTE": "feeds is an array of objects where the key is presentational, and the value is the rss URL. i_feeds is a list of internal feeds, powered by an internal RSSHub instance.",
             "feeds": [
-                { "Hacker News": "https://news.ycombinator.com/rss" },
-                { "Ars Technica": "http://feeds.arstechnica.com/arstechnica/index" },
-                { "Dev.to": "https://dev.to/feed/" },
                 { "NPR": "https://www.npr.org/rss/rss.php?id=1001" },
                 { "Washington Post": "http://feeds.washingtonpost.com/rss/national?tid=lk_inline_manual_11" },
                 { "BBC World":  "http://feeds.bbci.co.uk/news/world/rss.xml" },
@@ -19,7 +16,6 @@
 		        { "Kotaku": "https://kotaku.com/rss" },
                 { "Game Informer": "https://www.gameinformer.com/rss.xml" },
                 { "CSS Tricks": "https://css-tricks.com/feed/" },
-                { "Aeon": "https://aeon.co/feed.rss" },
                 { "Polygon": "https://www.polygon.com/rss/index.xml" }
             ],
             "i_feeds": [

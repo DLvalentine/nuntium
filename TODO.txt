@@ -13,6 +13,7 @@
 - Move all the OS specific junk into their own directories
 
 --- BUGFIX / CRITICAL ---
+- Looks like there's an influx of 403 forbidden for reason: "bots". May need to spoof the client header for GET requests to get around it? Only from certain sites...
 - Figure a better way to display CLI error messages
 - Improve throttling issue with stocks, apply to rss feeds
 - Error handling for RSS feeds that don't exist, or dead links (Reuters pulled theirs, and weird errors started happening on my end)
