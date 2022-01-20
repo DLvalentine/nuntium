@@ -13,9 +13,7 @@
 - Move all the OS specific junk into their own directories
 
 --- BUGFIX / CRITICAL ---
-- Figure a better way to display CLI error messages
 - Improve throttling issue with stocks, apply to rss feeds
-- Error handling for RSS feeds that don't exist, or dead links (Reuters pulled theirs, and weird errors started happening on my end)
 - come up with CLI options => override config stuff
 - be able to handle more than 10 stock symbols, eventually - right now we just offload it, wait for the rate limiter, then call again
 - Add more details to README, to include the ahk stuff I added as a bonus to our Windows users out there <3
@@ -28,8 +26,7 @@ aggregator/aggregator.rb:  ## TODO: actually this will be useful, I just need to
 aggregator/aggregator.rb:  ## TODO: Only here to serve as an implementation reminder. Remove for prod.
 aggregator/disk.rb:  # TODO: make a file directory attr in config.json, since
 aggregator/disk.rb:  #  TODO: an optimization would be to check the size first, and skip
-aggregator/rss.rb:      ## todo: shift probaly not the right thing... or if it is, need to rewrite cache...
-aggregator/rss.rb:      # TODO: Build a better handler for this, skip feed? drop feed? For now, don't recover, throw error.
+aggregator/rss.rb:      # TODO: maybe move this into a util class if we want this to be the way to log errors (because of how CLI works)
 aggregator/rss.rb:  ### TODO: probably candidate for pulling out into method on Aggregator
 aggregator/stock.rb:    # TODO: generate a new key, pivot to using gh secrets now that those are a thing. Need to figure a workflow for that...
 aggregator/stock.rb:        if symbol_length > 5 && index > 4 # TODO: Handle this in batches, so we can support more than 10 symbols, staggered

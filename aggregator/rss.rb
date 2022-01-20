@@ -38,19 +38,17 @@ class Rss < Aggregator
   def read
     begin
       title              = @current_feed.keys.first
-      ## todo: shift probaly not the right thing... or if it is, need to rewrite cache...
       content            = @cache[@current_feed.keys.first] || fetch_feed
       @current_feed_link = content[0]&.dig('link')
       decoded_content    = HTMLEntities.new.decode(content&.shift&.dig('title'))
       @cache[@current_feed.keys.first] = nil if content.empty?
-      next_feed
-      "<#{title}>: #{decoded_content || Rss::NO_VALUE}"
     rescue => e
-      # Error while parsing, something weird during feed fetch, not read, probably
-      # TODO: Build a better handler for this, skip feed? drop feed? For now, don't recover, throw error.
-      puts e
-      exit!
+      # Error while parsing, something weird during feed fetch/parse, not read (as in pulling off queue), probably
+      # TODO: maybe move this into a util class if we want this to be the way to log errors (because of how CLI works)
+      File.open('errors.log', 'w') { |file| file.write("Error while parsing feed <#{title}>: #{e}\n") }
     end
+    next_feed
+    "<#{title}>: #{decoded_content || Rss::NO_VALUE}"
   end
 
   private
