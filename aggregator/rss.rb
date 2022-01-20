@@ -110,7 +110,7 @@ class Rss < Aggregator
     endpoint = @current_feed.values.first
 
     begin
-      document = SimpleRSS.parse(URI.open(endpoint))
+      document = SimpleRSS.parse(URI.open(endpoint, "User-Agent" => "Ruby-wget"))
     rescue => e
       puts "Error: <#{e}> while trying to call <#{@current_feed_link}>"
       # effectively skip document
