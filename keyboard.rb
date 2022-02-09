@@ -17,7 +17,7 @@ module Keyboard
   end
 
   # Registers the keys
-  def self.add_shortcut(key, &block)
-    @key_binds[key] = ->(&block)
+  def self.add_shortcut(key)
+    @key_binds[key] = -> { yield }
   end
 end
