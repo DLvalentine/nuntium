@@ -7,9 +7,9 @@ require 'json'
 #               as such, this... is kinda just like a factory now, for pumping out classes. Kinda metaprogramming except not.
 #               It works, so I'm probably not going to change it, but it is over-engineered for what it does. Maybe I will change it idk.
 class Aggregator
-  require_relative 'disk.rb'
-  require_relative 'stock.rb'
-  require_relative 'rss.rb'
+  require_relative 'disk'
+  require_relative 'stock'
+  require_relative 'rss'
 
   attr_reader :feed
 

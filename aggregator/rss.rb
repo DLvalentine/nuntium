@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../util.rb'
+require_relative '../util'
 
 require 'htmlentities'
 require 'launchy'
@@ -15,7 +15,7 @@ class Rss < Aggregator
   RSS_REFRESH_TIME_SECONDS   = 7_200 # two hours
   CACHE_FILENAME             = 'rss_cache.json'
   NO_VALUE                   = 'N/A'
-  
+
   def initialize(config)
     @feeds = config['feeds']
     append_ifeeds(config['i_feeds'])
@@ -42,7 +42,7 @@ class Rss < Aggregator
       @current_feed_link = content[0]&.dig('link')
       decoded_content    = HTMLEntities.new.decode(content&.shift&.dig('title'))
       @cache[@current_feed.keys.first] = nil if content.empty?
-    rescue => e
+    rescue StandardError => e
       # Error while parsing, something weird during feed fetch/parse, not read (as in pulling off queue), probably
       # TODO: maybe move this into a util class if we want this to be the way to log errors (because of how CLI works)
       File.open('errors.log', 'w') { |file| file.write("Error while parsing feed <#{title}>: #{e}\n") }
@@ -108,8 +108,8 @@ class Rss < Aggregator
     endpoint = @current_feed.values.first
 
     begin
-      document = SimpleRSS.parse(URI.open(endpoint, "User-Agent" => "Ruby-wget"))
-    rescue => e
+      document = SimpleRSS.parse(URI.open(endpoint, 'User-Agent' => 'Ruby-wget'))
+    rescue StandardError => e
       puts "Error: <#{e}> while trying to call <#{@current_feed_link}>"
       # effectively skip document
       document = { title: Rss::NO_VALUE, items: {} }

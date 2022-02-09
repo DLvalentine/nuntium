@@ -3,11 +3,10 @@
 require 'open-uri'
 require 'json'
 require 'date'
-require_relative '../util.rb'
+require_relative '../util'
 
 ## Aggregator class for stock symbols, their current value and movement
 # NOTE: restricted by alphavantage's TPS/rules -- see: https://www.alphavantage.co/support/#api-key
-# If you're having trouble with the stock feature, consider getting your own damn API key ;)
 class Stock < Aggregator
   attr_reader :current_symbol
 
@@ -17,7 +16,7 @@ class Stock < Aggregator
   NO_VALUE       = '-'
   DAY_IN_SECONDS = 86_400
   CACHE_FILENAME = 'stock_cache.json'
-  STOCK_TPS      = 65 # 5 calls per 60 secs permitted, 500 calls per day.
+  STOCK_TIMEOUT  = 65 # 5 calls per 60 secs permitted, 500 calls per day.
 
   def initialize(config)
     @symbols = config['symbols']
@@ -25,8 +24,8 @@ class Stock < Aggregator
     @current_symbol_index = 0
 
     # Not really concerned about this. If it dies, so does this feature until I come up
-    # with a better way to grab stocks. This is just a side-project, anyway :)
-    # TODO: generate a new key, pivot to using gh secrets now that those are a thing. Need to figure a workflow for that...
+    # with a better way to grab stocks. This is just a side-project/hobby project, anyway :)
+    # I realize I could probably set up something like git-crypt, but...
     @api = 'W4JK4YBUEQTP6PIZ'
 
     # local caching
@@ -61,7 +60,7 @@ class Stock < Aggregator
         if symbol_length > 5 && index > 4 # TODO: Handle this in batches, so we can support more than 10 symbols, staggered
           # TODO: this fires even if we have it in a cached file. Not the end of the world, but optimally we want to redo this...
           #       works for now.
-          Util.wait(STOCK_TPS) { quote_missing_symbol(@symbols[index]) }
+          Util.wait(STOCK_TIMEOUT) { quote_missing_symbol(@symbols[index]) }
         else
           read
         end
@@ -142,6 +141,7 @@ class Stock < Aggregator
   end
 
   # Acts similar to quote, but for specific symbols
+  # TODO: DRY this up
   def quote_missing_symbol(missing_symbol)
     endpoint = 'https://www.alphavantage.co/'
     query = "query?function=GLOBAL_QUOTE&symbol=#{missing_symbol}&apikey=#{@api}"

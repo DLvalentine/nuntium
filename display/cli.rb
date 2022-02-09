@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 require 'io/console'
-require_relative '../util.rb'
-require_relative '../keyboard.rb'
+require_relative '../util'
+require_relative '../keyboard'
 
 ## Implementation of ticker for CLI displays
 class Cli < Display
   attr_reader :width
+
   CLI_SPEED = 0.10
   PAUSE_TIME_SECS = 5
 

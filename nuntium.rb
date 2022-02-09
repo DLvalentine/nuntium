@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative './display/display.rb'
-require_relative './aggregator/aggregator.rb'
-require_relative 'util.rb'
-require_relative 'keyboard.rb'
+require_relative './display/display'
+require_relative './aggregator/aggregator'
+require_relative 'util'
+require_relative 'keyboard'
 
 # TODO: Add improved loading icon/thing while chunking data
 def main
@@ -11,7 +11,7 @@ def main
   Util.clear_term
 
   # TODO: make sure this thread gets killed...after you add in the frfr invalidation...
-  @chunk = "RSS data"
+  @chunk = 'RSS data'
   @loading_thread = Util.poll(Cli::CLI_SPEED) { print "\rLoading #{@chunk}..." unless caches_valid? }
   Util.poll(30) { Util.clear_term }
 
@@ -26,20 +26,18 @@ def main
   config = read_config
   # TODO: Mac compat - basically a ruby script I guess... or fallback scripts
   Keyboard.add_shortcut('q') do
-    if @enable_rsshub
-      system('start /min rsshub_exit.bat')
-    end
+    system('start /min rsshub_exit.bat') if @enable_rsshub
     exit!
   end
 
-  Keyboard.add_shortcut('c') do 
+  Keyboard.add_shortcut('c') do
     Util.clear_term
   end
-  
+
   Keyboard.enable_listener
 
   # start streaming data
-  @loading_thread.kill() if caches_valid?
+  @loading_thread.kill if caches_valid?
   Util.clear_term
   cli.display.stream(config) if caches_valid?
 end
@@ -50,7 +48,7 @@ def caches_valid?
   rss_feeds_exist = File.exist?(Rss::CACHE_FILENAME)
   stock_feeds_exists = File.exist?(Stock::CACHE_FILENAME)
 
-  @chunk = rss_feeds_exist ? "Stock Symbol data" : "RSS data"
+  @chunk = rss_feeds_exist ? 'Stock Symbol data' : 'RSS data'
 
   rss_feeds_exist && stock_feeds_exists
 end
