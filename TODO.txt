@@ -3,11 +3,11 @@
 - might make sense to add a JSON reader function to util.rb, and then make specific uses of it in the aggregator classes
 - come up with config template builder - then ignore your own conf. That way people don't have to deal with your junk lmao
 - create gem for this, for "installer"
-- Basic RSSHub integration is done, need to support Mac/linux, update docs, and write install script for this whole package - to include... Ruby, Node.. everything.
+- RSS generator
 
 --- BUGFIX / CRITICAL ---
-- Add more details to README, to include the AHK files I included, RSSHub (if we continue to use it), keyboard shortcuts, etc.
-- mac/nix compatible scripts (primarily for RSSHub), or instructions in the README
+- Add more details to README, to include the AHK files I included, RSS internal generator, keyboard shortcuts, etc.
+- mac/nix compatible scripts or instructions in the README
 - ^ similarly, dependencies that are needed there should go in README or become an install script (like for Node)
 - ^ install scripts, just in general
 - Update the RSS aggregator to refresh every 2 hours, tune this. Or, make it configurable

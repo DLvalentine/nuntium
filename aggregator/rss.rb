@@ -53,9 +53,9 @@ class Rss < Aggregator
 
   private
 
-  # Ping the internal RSSHub instance - if it is online, append those feeds.
+  # TODO, implement
   def append_ifeeds(i_feeds)
-    @feeds.concat(i_feeds) if Util.local_rsshub_online?
+    # @feeds.concat(i_feeds)
   end
 
   # Hit the feed for each feed URI at instantiation instead of

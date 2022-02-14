@@ -7,7 +7,7 @@
             ]
         },
         "rss": {
-            "_NOTE": "feeds is an array of objects where the key is presentational, and the value is the rss URL. i_feeds is a list of internal feeds, powered by an internal RSSHub instance.",
+            "_NOTE": "feeds is an array of objects where the key is presentational, and the value is the rss URL. i_feeds is a list of internal feeds, powered by a WIP RSS Feed 'generator'.",
             "feeds": [
                 { "Hacker News": "https://news.ycombinator.com/rss" },
                 { "Ars Technica": "http://feeds.arstechnica.com/arstechnica/index" },

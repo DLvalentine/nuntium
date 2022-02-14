@@ -1,1 +1,0 @@
-cd RSSHub && npm start

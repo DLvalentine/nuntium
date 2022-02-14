@@ -35,8 +35,4 @@ module Util
       OS.windows? ? system('cls') : system('clear')
     end
   end
-
-  def self.local_rsshub_online?
-    Net::Ping::TCP.new('localhost', 1200, 3).ping?
-  end
 end
